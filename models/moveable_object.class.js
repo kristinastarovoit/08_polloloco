@@ -8,6 +8,8 @@ class MoveableObject {
     currentImage = 0;
     speed= 0.15;
 
+    otherDirection = false;
+
     loadImg(path) {
         this.img = new Image();
         this.img.src = path;

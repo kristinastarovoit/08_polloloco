@@ -51,6 +51,30 @@ class World {
     }
 
     addToMap(moveableObject) {
-        this.ctx.drawImage(moveableObject.img, moveableObject.x, moveableObject.y, moveableObject.width, moveableObject.height)
+        if (moveableObject.otherDirection) {
+            this.ctx.save();
+            // Ursprung an die Position des Characters setzen -> Mitte der Breite, nicht obere linke Ecke, deshalb width / 2
+            this.ctx.translate(moveableObject.x + moveableObject.width / 2, moveableObject.y);
+            this.ctx.scale(-1, 1);
+            // Zeichne relativ zum neuen Ursprung (Mitte linksbündig)
+            this.ctx.drawImage(
+                moveableObject.img, -moveableObject.width / 2, 0, moveableObject.width, moveableObject.height);
+            this.ctx.restore();
+        } else {
+            this.ctx.drawImage(moveableObject.img, moveableObject.x, moveableObject.y, moveableObject.width, moveableObject.height);
+        }
+
     }
 }
+
+//     if (moveableObject.otherDirection) {
+//         this.ctx.save();
+//         this.ctx.translate(moveableObject.width, 0);
+//         this.ctx.scale(-1, 1);
+//         moveableObject.x = moveableObject.x * -1;
+//     }
+//     this.ctx.drawImage(moveableObject.img, moveableObject.x, moveableObject.y, moveableObject.width, moveableObject.height);
+//     if (moveableObject.otherDirection) {
+//         moveableObject.x = moveableObject.x * -1;
+//         this.ctx.restore();
+//     }
