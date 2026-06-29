@@ -10,7 +10,12 @@ class MoveableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    }
 
     applyGravity() {
         setInterval(() => {
@@ -44,13 +49,32 @@ class MoveableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
+            ctx.lineWidth = 2;
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
+
+            // --- Hitbox mit Offset (rot) ---
+            ctx.beginPath();
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'red';
+            ctx.rect(
+                this.x + this.offset.left,
+                this.y + this.offset.top,
+                this.width - this.offset.left - this.offset.right,
+                this.height - this.offset.top - this.offset.bottom
+            );
+            ctx.stroke();
         }
+    }
+    // character.isColliding(chicken)
+    isColliding(moveableObject) {
+        return this.x + this.width - this.offset.right > moveableObject.x + moveableObject.offset.left &&
+            this.y + this.height - this.offset.bottom > moveableObject.y + moveableObject.offset.top &&
+            this.x + this.offset.left < moveableObject.x + moveableObject.width - moveableObject.offset.right &&
+            this.y + this.offset.top < moveableObject.y + moveableObject.height - moveableObject.offset.bottom;
     }
 
     playAnimation(images) {

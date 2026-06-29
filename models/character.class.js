@@ -23,6 +23,12 @@ class Character extends MoveableObject {
         'img/2_character_pepe/3_jump/J-38.png',
         'img/2_character_pepe/3_jump/J-39.png'
     ];
+    offset = {
+        top: 88,
+        right: 30,
+        bottom: 12,
+        left: 22
+    }
     world;
 
     constructor() {
