@@ -7,8 +7,10 @@ class World {
     canvas;
     ctx;
     keyboard;
+    healthBar;
+    bottleBar;
+    coinBar;
     camera_x = 0;
-    statusBar = new StatusBar();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -18,6 +20,9 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.healthBar = this.level.statusBars[0];
+        this.bottleBar = this.level.statusBars[1];
+        this.coinBar = this.level.statusBars[2];
     }
     setWorld() {
         this.character.world = this;
@@ -30,7 +35,7 @@ class World {
         }, 200)
     }
     checkThrowObjects() {
-        if(this.keyboard.D) {
+        if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x, this.character.y);
             this.throwableObjects.push(bottle);
         }
@@ -41,8 +46,7 @@ class World {
                 console.log('Collision with character', enemy);
                 this.character.hit();
                 console.log('energy is', this.character.energy);
-                this.statusBar.setPercentage(this.character.energy)
-
+                this.healthBar.setPercentage(this.character.energy);
             }
         });
     }
@@ -51,16 +55,14 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
-
-
-        this.ctx.translate(-this.camera_x, 0); //reset camera
-        //space for fixed objects
-        this.addToMap(this.statusBar);
-        this.ctx.translate(this.camera_x, 0);   //reset camera
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
+        this.ctx.translate(-this.camera_x, 0); //reset camera
+        //space for fixed objects
+        this.addObjectsToMap(this.level.statusBars);
+        this.ctx.translate(this.camera_x, 0);   //reset camera
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

@@ -1,5 +1,5 @@
 class StatusBar extends DrawableObject {
-    IMAGES_HEALTH = [
+    IMAGES_HEALTHBAR = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/40.png',
@@ -7,15 +7,33 @@ class StatusBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/80.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png'
     ];
+    IMAGES_BOTTLEBAR = [
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/0.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/20.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/40.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/60.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/80.png',
+        'img/7_statusbars/1_statusbar/3_statusbar_bottle/green/100.png'
+    ];
+    IMAGES_COINBAR = [
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/40.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/60.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/80.png',
+        'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png'
+    ];
+    statusImgs;
 
     percentage = 100;
 
-    constructor() {
+    constructor(y, statusbarImages) {
         super();
-        this.loadImgs(this.IMAGES_HEALTH);
+        this.statusImgs = this[statusbarImages];   // z.B. this["IMAGES_HEALTHBAR"]
+        this.loadImgs(this.statusImgs);
         this.x = 30;
-        this.y = 0;
-        this.width =200;
+        this.y = y;
+        this.width = 200;
         this.height = 53;
         this.setPercentage(100);
     }
@@ -23,7 +41,7 @@ class StatusBar extends DrawableObject {
     // setPercentage(50)
     setPercentage(percentage) {
         this.percentage = percentage; // => 0 .... 5 (weil 6 Bilder)
-        let path = this.IMAGES_HEALTH[this.resolveImageIndex()];
+        let path = this.statusImgs[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
