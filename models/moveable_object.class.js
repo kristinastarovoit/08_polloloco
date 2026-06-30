@@ -22,7 +22,11 @@ class MoveableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        return this.y < 220;
+        if (this instanceof ThrowableObject) { //throwableobject should always fall out of map
+            return true;
+        } else {
+            return this.y < 220;
+        }
     }
 
     // character.isColliding(chicken)
