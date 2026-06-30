@@ -1,11 +1,4 @@
-class MoveableObject {
-    x = 120;
-    y = 280;
-    img;
-    height = 150;
-    width = 100;
-    imageCache = {};
-    currentImage = 0;
+class MoveableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -26,51 +19,12 @@ class MoveableObject {
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
-
     }
 
     isAboveGround() {
         return this.y < 220;
     }
 
-    loadImg(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImgs(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-
-            // --- Hitbox (rot) ---
-            ctx.beginPath();
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = 'red';
-            ctx.rect(
-                this.x + this.offset.left,
-                this.y + this.offset.top,
-                this.width - this.offset.left - this.offset.right,
-                this.height - this.offset.top - this.offset.bottom
-            );
-            ctx.stroke();
-        }
-    }
     // character.isColliding(chicken)
     isColliding(moveableObject) {
         return this.x + this.width - this.offset.right > moveableObject.x + moveableObject.offset.left &&
@@ -91,8 +45,8 @@ class MoveableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000; // converts ms to seconds
-        console.log('isHurt()', { timepassed, lastHit: this.lastHit });
-        return timepassed < 5; // true if last hit was less than 5 seconds ago
+        // console.log('isHurt()', { timepassed, lastHit: this.lastHit });
+        return timepassed < 1; // true if last hit was less than 5 seconds ago
     }
 
     isDead() {
