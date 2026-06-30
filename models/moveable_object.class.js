@@ -16,6 +16,8 @@ class MoveableObject {
         bottom: 0,
         left: 0
     }
+    energy = 100;
+    lastHit = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -56,7 +58,7 @@ class MoveableObject {
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
 
-            // --- Hitbox mit Offset (rot) ---
+            // --- Hitbox (rot) ---
             ctx.beginPath();
             ctx.lineWidth = 2;
             ctx.strokeStyle = 'red';
@@ -75,6 +77,26 @@ class MoveableObject {
             this.y + this.height - this.offset.bottom > moveableObject.y + moveableObject.offset.top &&
             this.x + this.offset.left < moveableObject.x + moveableObject.width - moveableObject.offset.right &&
             this.y + this.offset.top < moveableObject.y + moveableObject.height - moveableObject.offset.bottom;
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
+        }
+    }
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; // difference in ms
+        timepassed = timepassed / 1000; // converts ms to seconds
+        console.log('isHurt()', { timepassed, lastHit: this.lastHit });
+        return timepassed < 5; // true if last hit was less than 5 seconds ago
+    }
+
+    isDead() {
+        return this.energy == 0;
     }
 
     playAnimation(images) {
