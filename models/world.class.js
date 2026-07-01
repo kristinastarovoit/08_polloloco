@@ -12,8 +12,6 @@ class World {
     coinBar;
     camera_x = 0;
     throwableObjects = [];
-    bottle = [new Bottle(), new Bottle(), new Bottle(), new Bottle()];
-    coins = [new Coin(), new Coin(), new Coin(),new Coin()];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -59,10 +57,10 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.bottle);
+        // this.addObjectsToMap(this.bottle);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.coins);
+        this.addObjectsToMap(this.level.collectables);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0); //reset camera
         //space for fixed objects

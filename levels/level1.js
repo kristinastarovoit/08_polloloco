@@ -31,8 +31,18 @@ const level1 = new Level(
         new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 3 * 720),
     ],
     [
-        new StatusBar(0, 'IMAGES_HEALTHBAR'), 
-        new StatusBar(50, 'IMAGES_BOTTLEBAR'), 
+        new StatusBar(0, 'IMAGES_HEALTHBAR'),
+        new StatusBar(50, 'IMAGES_BOTTLEBAR'),
         new StatusBar(100, 'IMAGES_COINBAR')
+    ],
+    [
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin()
     ]
 );
