@@ -35,11 +35,13 @@ class World {
             this.checkCollectableCollision();
         }, 200)
     }
-    // erstellt bottle wenn D gedrückt wird
+    // erstellt bottle wenn D gedrückt wird und der Character mindestens 20 Flaschen hat
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.character.bottles >= 20) {
             let bottle = new ThrowableObject(this.character.x, this.character.y);
             this.throwableObjects.push(bottle);
+            this.character.bottles -= 20;
+            this.bottleBar.setPercentage(this.character.bottles);
         }
     }
     checkEnemyCollisions() {
@@ -65,25 +67,52 @@ class World {
                     this.bottleBar.setPercentage(this.character.bottles);
                 }
                 this.level.collectables.splice(index, 1);
+
             }
         });
     }
 
+    // draw() {
+    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    //     this.ctx.translate(this.camera_x, 0);
+    //     this.addObjectsToMap(this.level.backgroundObjects);
+    //     this.addToMap(this.character);
+    //     // this.addObjectsToMap(this.bottle);
+    //     this.addObjectsToMap(this.level.enemies);
+    //     this.addObjectsToMap(this.level.clouds);
+    //     this.addObjectsToMap(this.level.collectables);
+    //     this.addObjectsToMap(this.throwableObjects);
+    //     this.ctx.translate(-this.camera_x, 0); //reset camera
+    //     //space for fixed objects
+    //     this.addObjectsToMap(this.level.statusBars);
+    //     this.ctx.translate(this.camera_x, 0);   //reset camera
+    //     this.ctx.translate(-this.camera_x, 0);
+
+    //     let self = this;
+    //     requestAnimationFrame(function () {
+    //         self.draw();
+    //     })
+    // }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        //  Kamera aktivieren
         this.ctx.translate(this.camera_x, 0);
+
+        // Welt zeichnen
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        // this.addObjectsToMap(this.bottle);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.collectables);
         this.addObjectsToMap(this.throwableObjects);
-        this.ctx.translate(-this.camera_x, 0); //reset camera
-        //space for fixed objects
-        this.addObjectsToMap(this.level.statusBars);
-        this.ctx.translate(this.camera_x, 0);   //reset camera
+
+        //  Kamera deaktivieren
         this.ctx.translate(-this.camera_x, 0);
+
+        // fixe UI Elemente
+        this.addObjectsToMap(this.level.statusBars);
 
         let self = this;
         requestAnimationFrame(function () {
@@ -99,6 +128,7 @@ class World {
 
     addToMap(moveableObject) {
         moveableObject.drawFrame(this.ctx);
+        
         if (moveableObject.otherDirection) {
             this.flipImage(moveableObject)
         } else {
@@ -111,7 +141,7 @@ class World {
         // Ursprung an die Position des Characters setzen -> Mitte der Breite, nicht obere linke Ecke, deshalb width / 2
         this.ctx.translate(moveableObject.x + moveableObject.width / 2, moveableObject.y);
         this.ctx.scale(-1, 1);
-        // Zeichne relativ zum neuen Ursprung (Mitte linksbündig)
+        // Zeichnet relativ zum neuen Ursprung (Mitte linksbündig)
         this.ctx.drawImage(
             moveableObject.img, -moveableObject.width / 2, 0, moveableObject.width, moveableObject.height);
         this.ctx.restore();
