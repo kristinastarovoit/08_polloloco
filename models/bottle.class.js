@@ -6,10 +6,10 @@ class Bottle extends DrawableObject {
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
     ];
     offset = {
-        top: 0,
-        right: 0,
+        top: 13,
+        right: 21,
         bottom: 0,
-        left: 0
+        left: 21
     }
     constructor() {
         super();
