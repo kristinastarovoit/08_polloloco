@@ -1,8 +1,8 @@
 class Character extends MoveableObject {
     width = 100;
     height = 196;
-    // y = 230;
-    y = 80;
+    y = 230;
+    // y = 80;
     speed = 10;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -44,6 +44,8 @@ class Character extends MoveableObject {
         left: 22
     }
     world;
+    coins;
+    bottles;
 
     constructor() {
         super();
@@ -52,6 +54,8 @@ class Character extends MoveableObject {
         this.loadImgs(this.IMAGES_JUMPING);
         this.loadImgs(this.IMAGES_HURTING);
         this.loadImgs(this.IMAGES_DYING);
+        this.coins = 0;
+        this.bottles = 0;
         this.applyGravity();
         this.animate();
     }
