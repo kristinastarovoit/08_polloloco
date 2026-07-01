@@ -9,5 +9,6 @@ class Level {
         this.enemies = enemies;
         this.clouds = clouds;
         this.backgroundObjects = backgroundObjects;
-        this.statusBars = statusBars;    }
+        this.statusBars = statusBars;
+        }
 }

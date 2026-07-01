@@ -20,12 +20,12 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.healthBar = this.level.statusBars[0];
+        this.healthBar = this.level.statusBars[0]; // erkennt die einzelnen StatusBars
         this.bottleBar = this.level.statusBars[1];
         this.coinBar = this.level.statusBars[2];
     }
     setWorld() {
-        this.character.world = this;
+        this.character.world = this; // Kreuzreferenz für keyboard
     }
 
     run() {
@@ -84,7 +84,6 @@ class World {
         } else {
             moveableObject.draw(this.ctx);
         }
-
     }
 
     flipImage(moveableObject) {
