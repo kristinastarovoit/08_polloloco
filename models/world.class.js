@@ -30,8 +30,9 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkEnemyCollisions();
             this.checkThrowObjects();
+            this.checkCollectableCollision();
         }, 200)
     }
     // erstellt bottle wenn D gedrückt wird
@@ -41,13 +42,29 @@ class World {
             this.throwableObjects.push(bottle);
         }
     }
-    checkCollisions() {
+    checkEnemyCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 // console.log('Collision with character', enemy);
                 this.character.hit();
                 console.log('energy is', this.character.energy);
                 this.healthBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkCollectableCollision() {
+        this.level.collectables.forEach((collectable, index) => {
+            if (this.character.isColliding(collectable)) {
+                if (collectable instanceof Coin) {
+                    this.character.coins += 20;
+                    this.coinBar.setPercentage(this.character.coins);
+                }
+                if (collectable instanceof Bottle) {
+                    this.character.bottles += 20;
+                    this.bottleBar.setPercentage(this.character.bottles);
+                }
+                this.level.collectables.splice(index, 1);
             }
         });
     }
