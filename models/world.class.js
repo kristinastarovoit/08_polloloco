@@ -12,6 +12,7 @@ class World {
     coinBar;
     camera_x = 0;
     throwableObjects = [];
+    bottle = [new Bottle(),new Bottle(),new Bottle(),new Bottle()];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -34,6 +35,7 @@ class World {
             this.checkThrowObjects();
         }, 200)
     }
+    // erstellt bottle wenn D gedrückt wird
     checkThrowObjects() {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x, this.character.y);
@@ -56,6 +58,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
+        this.addObjectsToMap(this.bottle);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
