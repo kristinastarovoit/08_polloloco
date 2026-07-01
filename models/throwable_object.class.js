@@ -3,8 +3,8 @@ class ThrowableObject extends MoveableObject {
         super();
         this.x = x;
         this.y = y;
-        this.height = 100;
-        this.width = 100;
+        this.height = 80;
+        this.width = 80;
         this.loadImg('img/6_salsa_bottle/salsa_bottle.png');
         this.throw();
     }
