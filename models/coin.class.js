@@ -9,24 +9,26 @@ class Coin extends DrawableObject {
         bottom: 42,
         left: 42
     }
-    // IMAGES_COLLECTING = [
-    //     'img/8_coin/coin_1.png',
-    //     'img/8_coin/coin_2.png',
-    //     'img/8_coin/coin_1.png',
-    //     'img/8_coin/coin_2.png', 'img/8_coin/coin_1.png',
-    //     'img/8_coin/coin_2.png'
-    // ]
+    IMAGES_COIN = [
+        'img/8_coin/coin_1.png',
+        'img/8_coin/coin_2.png',
+        // 'img/8_coin/coin_1.png',
+        // 'img/8_coin/coin_2.png', 
+        // 'img/8_coin/coin_1.png',
+        // 'img/8_coin/coin_2.png'
+    ]
     constructor() {
         super();
         this.loadImg('img/8_coin/coin_1.png');
-        // this.loadImgs(this.IMAGES_COLLECTING);
+        this.loadImgs(this.IMAGES_COIN);
         this.x = 200 + Math.random() * 1500;
         this.y = 150 + Math.random() * 100;
+        this.playCoinAnimation();
     }
 
-    // playCollectAnimation() {
-    //     setInterval(() => {
-    //         this.playAnimation(this.IMAGES_COLLECTING);
-    //     }, 50);
-    // }
+    playCoinAnimation() {
+        setInterval(() => {
+            this.playAnimation(this.IMAGES_COIN);
+        }, 400);
+    }
 }
