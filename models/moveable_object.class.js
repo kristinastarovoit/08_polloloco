@@ -37,12 +37,14 @@ class MoveableObject extends DrawableObject {
             this.y + this.offset.top < moveableObject.y + moveableObject.height - moveableObject.offset.bottom;
     }
 
-    hit() {
-        this.energy -= 5;
-        if (this.energy < 0) {
-            this.energy = 0;
-        } else {
-            this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
+    hit(dmg) {
+        if (!this.isHurt()) { // immunity für eine sekunde
+            this.energy -= dmg;
+            if (this.energy < 0) {
+                this.energy = 0;
+            } else {
+                this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
+            }
         }
     }
 
@@ -50,7 +52,7 @@ class MoveableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000; // converts ms to seconds
         // console.log('isHurt()', { timepassed, lastHit: this.lastHit });
-        return timepassed < 1; // true if last hit was less than 5 seconds ago
+        return timepassed < 1; // true if last hit was less than 1 seconds ago
     }
 
     isDead() {
