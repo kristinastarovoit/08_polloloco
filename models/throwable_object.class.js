@@ -15,6 +15,8 @@ class ThrowableObject extends MoveableObject {
     ];
     bottleHit;
     bottleRotationIntervall;
+    dmg = 20;
+
     constructor(x, y) {
         super();
         this.x = x;

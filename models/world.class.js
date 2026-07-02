@@ -77,7 +77,7 @@ class World {
         this.throwableObjects.forEach((bottle, bottleIndex) => {
             this.level.enemies.forEach((enemy, enemyIndex) => {
                 if (bottle.isColliding(enemy)) {
-                    enemy.hit();
+                    enemy.hit(bottle.dmg);
                     bottle.bottleHit = true;
                     bottle.lastHit = new Date().getTime();
                     setTimeout(() => {
