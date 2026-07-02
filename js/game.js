@@ -27,6 +27,9 @@ window.addEventListener('keydown', (event) => {
     }
     if (event.keyCode == 68) {
         keyboard.D = true;
+        if (world) {
+            world.throwBottle();
+        }
     }
     console.log(event);
 });

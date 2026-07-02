@@ -31,19 +31,21 @@ class World {
     run() {
         setInterval(() => {
             this.checkEnemyCollisions();
-            this.checkThrowObjects();
             this.checkCollectableCollision();
-        }, 200)
+            this.checkBottleEnemyCollision();
+        }, 1000 / 50)
     }
+
     // erstellt bottle wenn D gedrückt wird und der Character mindestens 20 Flaschen hat
-    checkThrowObjects() {
-        if (this.keyboard.D && this.character.bottles >= 20) {
+    throwBottle() {
+        if (this.character.bottles >= 20) {
             let bottle = new ThrowableObject(this.character.x, this.character.y);
             this.throwableObjects.push(bottle);
             this.character.bottles -= 20;
             this.bottleBar.setPercentage(this.character.bottles);
         }
     }
+
     checkEnemyCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -67,32 +69,26 @@ class World {
                     this.bottleBar.setPercentage(this.character.bottles);
                 }
                 this.level.collectables.splice(index, 1);
-
             }
         });
     }
 
-    // draw() {
-    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    //     this.ctx.translate(this.camera_x, 0);
-    //     this.addObjectsToMap(this.level.backgroundObjects);
-    //     this.addToMap(this.character);
-    //     // this.addObjectsToMap(this.bottle);
-    //     this.addObjectsToMap(this.level.enemies);
-    //     this.addObjectsToMap(this.level.clouds);
-    //     this.addObjectsToMap(this.level.collectables);
-    //     this.addObjectsToMap(this.throwableObjects);
-    //     this.ctx.translate(-this.camera_x, 0); //reset camera
-    //     //space for fixed objects
-    //     this.addObjectsToMap(this.level.statusBars);
-    //     this.ctx.translate(this.camera_x, 0);   //reset camera
-    //     this.ctx.translate(-this.camera_x, 0);
+    checkBottleEnemyCollision() {
+        this.throwableObjects.forEach((bottle, bottleIndex) => {
+            this.level.enemies.forEach((enemy, enemyIndex) => {
+                if (bottle.isColliding(enemy)) {
+                    enemy.hit();
+                    bottle.bottleHit = true;
+                    bottle.lastHit = new Date().getTime();
+                    setTimeout(() => {
+                        this.throwableObjects.splice(bottleIndex, 1);
+                    }, 100);
+                }
+            });
+        });
+    }
 
-    //     let self = this;
-    //     requestAnimationFrame(function () {
-    //         self.draw();
-    //     })
-    // }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -128,7 +124,7 @@ class World {
 
     addToMap(moveableObject) {
         moveableObject.drawFrame(this.ctx);
-        
+
         if (moveableObject.otherDirection) {
             this.flipImage(moveableObject)
         } else {
@@ -159,3 +155,25 @@ class World {
 //         moveableObject.x = moveableObject.x * -1;
 //         this.ctx.restore();
 //     }
+
+    // draw() {
+    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    //     this.ctx.translate(this.camera_x, 0);
+    //     this.addObjectsToMap(this.level.backgroundObjects);
+    //     this.addToMap(this.character);
+    //     // this.addObjectsToMap(this.bottle);
+    //     this.addObjectsToMap(this.level.enemies);
+    //     this.addObjectsToMap(this.level.clouds);
+    //     this.addObjectsToMap(this.level.collectables);
+    //     this.addObjectsToMap(this.throwableObjects);
+    //     this.ctx.translate(-this.camera_x, 0); //reset camera
+    //     //space for fixed objects
+    //     this.addObjectsToMap(this.level.statusBars);
+    //     this.ctx.translate(this.camera_x, 0);   //reset camera
+    //     this.ctx.translate(-this.camera_x, 0);
+
+    //     let self = this;
+    //     requestAnimationFrame(function () {
+    //         self.draw();
+    //     })
+    // }
