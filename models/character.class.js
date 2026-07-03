@@ -46,6 +46,7 @@ class Character extends MoveableObject {
     world;
     coins;
     bottles;
+    dmg = 10;
 
     constructor() {
         super();
@@ -92,7 +93,18 @@ class Character extends MoveableObject {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 50);
+        }, 100);
+    }
+
+    hit(dmg) {
+        if (!this.isHurt()) { // immunity für eine sekunde
+            this.energy -= dmg;
+            if (this.energy < 0) {
+                this.energy = 0;
+            } else {
+                this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
+            }
+        }
     }
 }
 

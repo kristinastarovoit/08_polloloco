@@ -37,15 +37,21 @@ class MoveableObject extends DrawableObject {
             this.y + this.offset.top < moveableObject.y + moveableObject.height - moveableObject.offset.bottom;
     }
 
+    isCollidingTopToBottom(moveableObject) {
+        return this.x + this.width > moveableObject.x &&
+            this.x < moveableObject.x + moveableObject.width && this.y + this.height > moveableObject.y && this.speedY < 0;
+    }
+
     hit(dmg) {
-        if (!this.isHurt()) { // immunity für eine sekunde
-            this.energy -= dmg;
-            if (this.energy < 0) {
-                this.energy = 0;
-            } else {
-                this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
-            }
+        console.log(this.constructor.name, "bekommt", dmg, "Schaden");
+        this.energy -= dmg;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
         }
+        console.log("Neue Energie:", this.energy);
+
     }
 
     isHurt() {
