@@ -52,7 +52,8 @@ class World {
 
     checkEnemyCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if(this.character.isCollidingTopToBottom(enemy)) {
+            if (enemy.isDead()) { return; }
+            if (this.character.isCollidingTopToBottom(enemy)) {
                 return;
             }
             if (this.character.isColliding(enemy)) {
@@ -66,6 +67,9 @@ class World {
 
     checkCharacterTopToBottomCollision() {
         this.level.enemies.forEach((enemy, enemyIndex) => {
+            if (enemy.isDead()) {
+                return;
+            }
             if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
                 if (this.character.isCollidingTopToBottom(enemy)) {
                     enemy.hit(this.character.dmg);
@@ -84,6 +88,7 @@ class World {
             if (enemy.isDead() && !enemy.deathTime) {
                 enemy.deathTime = Date.now();
                 enemy.speed = 0;
+                enemy.dmg = 0;
             }
         });
 

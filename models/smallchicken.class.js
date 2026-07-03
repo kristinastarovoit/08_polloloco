@@ -1,6 +1,6 @@
 class SmallChicken extends Chicken {
-    height = 45;
-    width = 45;
+    height = 50;
+    width = 50;
     y = 375;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -11,10 +11,14 @@ class SmallChicken extends Chicken {
     IMAGE_DEAD = 'img/3_enemies_chicken/chicken_small/2_dead/dead.png';
 
     offset = {
-        top: 3,
-        right: 4,
-        bottom: 6,
-        left: 4
+        // top: -3,
+        // right: -4,
+        // bottom: -6,
+        // left: -4
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
     };
     energy = 10;
     dmg = 5;
