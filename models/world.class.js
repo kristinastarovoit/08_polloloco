@@ -35,6 +35,7 @@ class World {
             this.checkBottleEnemyCollision();
             this.checkCharacterTopToBottomCollision();
             this.checkDeadEnemies();
+            this.checkEndbossPulled();
 
             // this.removeDeadEnemy();
         }, 1000 / 50)
@@ -77,9 +78,6 @@ class World {
                     this.character.speedY = 20;
                 }
             }
-            // if (enemy.isDead()) {
-            //     enemy.speed = 0;
-            // }
         })
     }
 
@@ -96,12 +94,7 @@ class World {
             return !enemy.deathTime || Date.now() - enemy.deathTime < 1000;
         });
     }
-    /// ????
-    removeDeadEnemy() {
-        setTimeout(() => {
-            this.level.enemies = this.level.enemies.filter(enemy => !enemy.isDead());
-        }, 1000);
-    }
+
 
     checkCollectableCollision() {
         this.level.collectables.forEach((collectable, index) => {
@@ -131,6 +124,16 @@ class World {
                 }
             });
         });
+    }
+
+    checkEndbossPulled() {
+        if (this.character.pulledEndboss()) {
+            this.level.enemies.forEach(enemy => {
+                if (enemy instanceof Endboss) {
+                    enemy.activateAlert();
+                }
+            });
+        }
     }
 
     draw() {

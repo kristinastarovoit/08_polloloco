@@ -89,22 +89,22 @@ class Character extends MoveableObject {
     }
 
     animate() {
-        this.lastMoveTime = Date.now(); 
+        this.lastMoveTime = Date.now();
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.otherDirection = false;
                 this.moveRight();
-                this.lastMoveTime = Date.now(); 
+                this.lastMoveTime = Date.now();
             }
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.otherDirection = true;
                 this.moveLeft();
-                this.lastMoveTime = Date.now(); 
+                this.lastMoveTime = Date.now();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                this.lastMoveTime = Date.now(); 
+                this.lastMoveTime = Date.now();
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
@@ -142,6 +142,9 @@ class Character extends MoveableObject {
                 this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
             }
         }
+    }
+    pulledEndboss() {
+        return this.x >= 1700;
     }
 }
 
