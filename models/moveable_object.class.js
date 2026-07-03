@@ -18,6 +18,10 @@ class MoveableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
+            if (this.y > 235) {
+                this.y = 235;
+                this.speedY = 0;
+            }
         }, 1000 / 25);
     }
 
@@ -25,7 +29,7 @@ class MoveableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { //throwableobject should always fall out of map
             return true;
         } else {
-            return this.y < 220;
+            return this.y < 235;
         }
     }
 
