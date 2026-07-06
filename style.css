@@ -7,3 +7,15 @@ body {
 canvas {
     background-color: black;
 }
+
+.ui_button {
+    height: 50px;
+    width: 50px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.d_none {
+    display: none;
+}

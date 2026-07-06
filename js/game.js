@@ -55,3 +55,52 @@ window.addEventListener('keyup', (event) => {
     }
     // console.log(event);
 });
+
+// const fullscreen = document.getElementById('fullscreen');
+
+function fullscreen() {
+    const fullscreen = document.getElementById('fullscreen');
+    // const fullscreenButton = document.getElementById('fullscreen_button');
+    // fullscreenButton.classList.toggle('d_none');
+    openFullscreen(fullscreen);
+}
+
+function openFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+        resizeCanvasFullscreen();
+    } else if (element.webkitRequestFullscreen) { /* Safari */
+        element.webkitRequestFullscreen();
+        resizeCanvasFullscreen();
+
+    } else if (element.msRequestFullscreen) { /* IE11 */
+        element.msRequestFullscreen();
+        resizeCanvasFullscreen();
+    }
+}
+
+function closeFullscreen() {
+    // const fullscreenButton = document.getElementById('fullscreen_button');
+    // fullscreenButton.classList.toggle('d_none');
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+        resizeCanvasNormal();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+        resizeCanvasNormal();
+
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+        resizeCanvasNormal();
+
+    }
+}
+function resizeCanvasFullscreen() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+function resizeCanvasNormal() {
+    canvas.width = 720;
+    canvas.height = 480;
+}

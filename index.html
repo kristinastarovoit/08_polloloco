@@ -26,8 +26,13 @@
 </head>
 
 <body onload="init()">
-    <h1>El Pollo Loco</h1>
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <div id="fullscreen">
+        <h1>El Pollo Loco</h1>
+        <canvas id="canvas" width="720" height="480">
+        </canvas>
+        <button onclick="fullscreen()" id="fullscreen_button"class="ui_button"><img src="img/controls/fullscreen.svg"></button>
+        <button onclick="closeFullscreen()" id="exit_fullscreen_button"class="ui_button"><img src="img/controls/exitfullscreen.svg"></button>
+    </div>
 </body>
 
 </html>
