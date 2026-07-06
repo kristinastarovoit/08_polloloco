@@ -36,7 +36,6 @@ class World {
             this.checkCharacterTopToBottomCollision();
             this.checkDeadEnemies();
             this.checkEndbossPulled();
-
             // this.removeDeadEnemy();
         }, 1000 / 50)
     }

@@ -4,8 +4,12 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById('canvas');
+    const startscreen = document.getElementById('startscreen');
+    const title = document.getElementById('title')
     world = new World(canvas, keyboard); // übergibt canvas in constructor von World
-
+    startscreen.classList.add('d_none');
+    canvas.classList.remove('d_none');
+    title.classList.remove('d_none');
     console.log('my character is', world.character);
 }
 
@@ -103,3 +107,13 @@ function closeFullscreen() {
 //     canvas.width = 720;
 //     canvas.height = 480;
 // }
+
+function openDialog() {
+    const dialog = document.getElementById('controls_dialog');
+    dialog.showModal();
+}
+
+function closeDialog() {
+    const dialog = document.getElementById('controls_dialog');
+    dialog.close();
+}
