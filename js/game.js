@@ -68,14 +68,14 @@ function fullscreen() {
 function openFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-        resizeCanvasFullscreen();
+        // resizeCanvasFullscreen();
     } else if (element.webkitRequestFullscreen) { /* Safari */
         element.webkitRequestFullscreen();
-        resizeCanvasFullscreen();
+        // resizeCanvasFullscreen();
 
     } else if (element.msRequestFullscreen) { /* IE11 */
         element.msRequestFullscreen();
-        resizeCanvasFullscreen();
+        // resizeCanvasFullscreen();
     }
 }
 
@@ -84,23 +84,22 @@ function closeFullscreen() {
     // fullscreenButton.classList.toggle('d_none');
     if (document.exitFullscreen) {
         document.exitFullscreen();
-        resizeCanvasNormal();
+        // resizeCanvasNormal();
     } else if (document.webkitExitFullscreen) { /* Safari */
         document.webkitExitFullscreen();
-        resizeCanvasNormal();
-
+        // resizeCanvasNormal();
     } else if (document.msExitFullscreen) { /* IE11 */
         document.msExitFullscreen();
-        resizeCanvasNormal();
+        // resizeCanvasNormal();
 
     }
 }
-function resizeCanvasFullscreen() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+// function resizeCanvasFullscreen() {
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+// }
 
-function resizeCanvasNormal() {
-    canvas.width = 720;
-    canvas.height = 480;
-}
+// function resizeCanvasNormal() {
+//     canvas.width = 720;
+//     canvas.height = 480;
+// }
