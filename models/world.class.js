@@ -89,7 +89,7 @@ class World {
                 enemy.dmg = 0;
             }
         });
-
+        // removes dead enemy after 1 second, so animation can finish
         this.level.enemies = this.level.enemies.filter(enemy => {
             return !enemy.deathTime || Date.now() - enemy.deathTime < 1000;
         });
@@ -169,7 +169,7 @@ class World {
     }
 
     addToMap(moveableObject) {
-         moveableObject.drawFrame(this.ctx);
+        //  moveableObject.drawFrame(this.ctx);
 
         if (moveableObject.otherDirection) {
             this.flipImage(moveableObject)

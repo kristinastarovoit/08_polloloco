@@ -42,8 +42,15 @@ class MoveableObject extends DrawableObject {
     }
 
     isCollidingTopToBottom(moveableObject) {
-        return this.x + this.width > moveableObject.x &&
-            this.x < moveableObject.x + moveableObject.width && this.y + this.height > moveableObject.y && this.speedY < 0;
+        // return this.x + this.width > moveableObject.x &&
+        //     this.x < moveableObject.x + moveableObject.width && this.y + this.height > moveableObject.y && this.speedY < 0;
+        // return this.x + this.width - this.offset.right > moveableObject.x &&
+        //     this.x < moveableObject.x + moveableObject.width - moveableObject.offset.right && 
+        //     this.y + this.height - this.offset.bottom > moveableObject.y && this.speedY < 0;
+        return this.x + this.width - this.offset.right > moveableObject.x + moveableObject.offset.left &&
+            this.x + this.offset.left < moveableObject.x + moveableObject.width - moveableObject.offset.right &&
+            this.y + this.height - this.offset.bottom > moveableObject.y + moveableObject.offset.top &&
+            this.speedY < 0;
     }
 
     hit(dmg) {
