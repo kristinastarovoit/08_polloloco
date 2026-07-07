@@ -42,15 +42,24 @@ class MoveableObject extends DrawableObject {
     }
 
     isCollidingTopToBottom(moveableObject) {
-        // return this.x + this.width > moveableObject.x &&
-        //     this.x < moveableObject.x + moveableObject.width && this.y + this.height > moveableObject.y && this.speedY < 0;
-        // return this.x + this.width - this.offset.right > moveableObject.x &&
-        //     this.x < moveableObject.x + moveableObject.width - moveableObject.offset.right && 
-        //     this.y + this.height - this.offset.bottom > moveableObject.y && this.speedY < 0;
-        return this.x + this.width - this.offset.right > moveableObject.x + moveableObject.offset.left &&
-            this.x + this.offset.left < moveableObject.x + moveableObject.width - moveableObject.offset.right &&
-            this.y + this.height - this.offset.bottom > moveableObject.y + moveableObject.offset.top &&
-            this.speedY < 0;
+        // 1. Checken, ob überhaupt eine gültige Kollision (inkl. Offsets) vorliegt
+        if (!this.isColliding(moveableObject)) {
+            return false;
+        }
+
+        // 2. Checken, ob der Charakter fällt (speedY < 0)
+        if (this.speedY >= 0) {
+            return false;
+        }
+
+        // 3. Den "Tunneling"-Puffer einbauen. 
+        // Wir prüfen, ob die Unterkante des Charakters ÜBER der horizontalen Mitte des Gegners ist.
+        // So zählst du nicht als "von oben gesprungen", wenn du ihn seitlich am Fuß berührst.
+        let characterBottom = this.y + this.height - this.offset.bottom;
+        let enemyTop = moveableObject.y + moveableObject.offset.top;
+        let enemyCenter = enemyTop + (moveableObject.height / 2);
+
+        return characterBottom < enemyCenter;
     }
 
     hit(dmg) {

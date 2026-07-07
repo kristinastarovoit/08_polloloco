@@ -33,10 +33,9 @@ class World {
             this.checkEnemyCollisions();
             this.checkCollectableCollision();
             this.checkBottleEnemyCollision();
-            this.checkCharacterTopToBottomCollision();
+            // this.checkCharacterTopToBottomCollision();
             this.checkDeadEnemies();
             this.checkEndbossPulled();
-            // this.removeDeadEnemy();
         }, 1000 / 50)
     }
 
@@ -50,35 +49,83 @@ class World {
         }
     }
 
+    // checkEnemyCollisions() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (enemy.isDead()) {
+    //             return;
+    //         }
+    //         if (this.character.isColliding(enemy)) {
+    //             if (this.character.isCollidingTopToBottom(enemy)) {
+    //                 enemy.hit(this.character.dmg);
+    //                 let enemyTopHitbox = enemy.y + enemy.offset.top;
+    //                 this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
+    //                 this.character.speedY = 20;
+    //             }
+    //             else {
+    //                 this.character.hit(enemy.dmg);
+    //                 this.healthBar.setPercentage(this.character.energy);
+    //             }
+    //         }
+    //     });
+    // }
+
     checkEnemyCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (enemy.isDead()) { return; }
-            if (this.character.isCollidingTopToBottom(enemy)) {
-                return;
-            }
-            if (this.character.isColliding(enemy)) {
-                // console.log('Collision with character', enemy);
-                this.character.hit(enemy.dmg);
-                console.log('energy is', this.character.energy);
-                this.healthBar.setPercentage(this.character.energy);
+            if (!enemy.isDead() && this.character.isColliding(enemy)) {
+                this.resolveCollision(enemy);
             }
         });
     }
 
-    checkCharacterTopToBottomCollision() {
-        this.level.enemies.forEach((enemy, enemyIndex) => {
-            if (enemy.isDead()) {
-                return;
-            }
-            if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
-                if (this.character.isCollidingTopToBottom(enemy)) {
-                    enemy.hit(this.character.dmg);
-                    console.log('enemy energy is', enemy.energy);
-                    this.character.speedY = 20;
-                }
-            }
-        })
+    resolveCollision(enemy) {
+        if (this.character.isCollidingTopToBottom(enemy)) {
+            this.handleJumpOnEnemy(enemy);
+        } else {
+            this.handlePlayerHit(enemy);
+        }
     }
+
+    handleJumpOnEnemy(enemy) {
+        enemy.hit(this.character.dmg);
+        let enemyTopHitbox = enemy.y + enemy.offset.top;
+        this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
+        this.character.speedY = 20;
+    }
+
+    handlePlayerHit(enemy) {
+        this.character.hit(enemy.dmg);
+        this.healthBar.setPercentage(this.character.energy);
+    }
+
+    // checkEnemyCollisions() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (enemy.isDead()) { return; }
+    //         if (this.character.isCollidingTopToBottom(enemy)) {
+    //             return;
+    //         }
+    //         if (this.character.isColliding(enemy)) {
+    //             // console.log('Collision with character', enemy);
+    //             this.character.hit(enemy.dmg);
+    //             console.log('energy is', this.character.energy);
+    //             this.healthBar.setPercentage(this.character.energy);
+    //         }
+    //     });
+    // }
+
+    // checkCharacterTopToBottomCollision() {
+    //     this.level.enemies.forEach((enemy, enemyIndex) => {
+    //         if (enemy.isDead()) {
+    //             return;
+    //         }
+    //         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
+    //             if (this.character.isCollidingTopToBottom(enemy)) {
+    //                 enemy.hit(this.character.dmg);
+    //                 console.log('enemy energy is', enemy.energy);
+    //                 this.character.speedY = 20;
+    //             }
+    //         }
+    //     })
+    // }
 
     checkDeadEnemies() {
         this.level.enemies.forEach(enemy => {
