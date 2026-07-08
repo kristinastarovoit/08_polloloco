@@ -90,7 +90,7 @@ class Character extends MoveableObject {
     animate() {
         this.lastMoveTime = Date.now();
 
-        setInterval(() => {
+        const movement = setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.otherDirection = false;
                 this.moveRight();
@@ -112,6 +112,7 @@ class Character extends MoveableObject {
             const inactiveTime = Date.now() - this.lastMoveTime;
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);
+                clearInterval(movement);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURTING);
             }
