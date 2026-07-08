@@ -23,14 +23,22 @@ class StatusBar extends DrawableObject {
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/80.png',
         'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png'
     ];
+    IMAGES_BOSSBAR = [
+        'img/7_statusbars/2_statusbar_endboss/orange/orange0.png',
+        'img/7_statusbars/2_statusbar_endboss/orange/orange20.png',
+        'img/7_statusbars/2_statusbar_endboss/orange/orange40.png',
+        'img/7_statusbars/2_statusbar_endboss/orange/orange60.png',
+        'img/7_statusbars/2_statusbar_endboss/orange/orange80.png',
+        'img/7_statusbars/2_statusbar_endboss/orange/orange100.png'
+    ];
     statusImgs;
     percentage;
 
-    constructor(y, statusbarImages, percentage) {
+    constructor(x, y, statusbarImages, percentage) {
         super();
         this.statusImgs = this[statusbarImages];   // z.B. this["IMAGES_HEALTHBAR"]
         this.loadImgs(this.statusImgs);
-        this.x = 30;
+        this.x = x;
         this.y = y;
         this.width = 200;
         this.height = 53;

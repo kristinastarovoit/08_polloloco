@@ -44,7 +44,7 @@ class Endboss extends MoveableObject {
         bottom: 16,
         left: 13
     };
-    energy = 80;
+    energy = 100;
     triggered = false;
     speed = 120;
     state = 'WALKING';

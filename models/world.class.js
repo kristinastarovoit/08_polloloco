@@ -10,6 +10,7 @@ class World {
     healthBar;
     bottleBar;
     coinBar;
+    bossBar;
     camera_x = 0;
     throwableObjects = [];
 
@@ -23,6 +24,7 @@ class World {
         this.healthBar = this.level.statusBars[0]; // erkennt die einzelnen StatusBars
         this.bottleBar = this.level.statusBars[1];
         this.coinBar = this.level.statusBars[2];
+        this.bossBar = this.level.statusBars[3];
     }
     setWorld() {
         this.character.world = this; // Kreuzreferenz für keyboard
@@ -89,6 +91,9 @@ class World {
 
     handleJumpOnEnemy(enemy) {
         enemy.hit(this.character.dmg);
+        if (enemy instanceof Endboss) {
+            this.bossBar.setPercentage(enemy.energy);
+        };
         let enemyTopHitbox = enemy.y + enemy.offset.top;
         this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
         this.character.speedY = 20;
@@ -163,6 +168,9 @@ class World {
                 if (bottle.isColliding(enemy) && !bottle.bottleHit) {
                     bottle.bottleHit = true;
                     enemy.hit(bottle.dmg);
+                    if (enemy instanceof Endboss) {
+                        this.bossBar.setPercentage(enemy.energy);
+                    }
                     setTimeout(() => {
                         this.throwableObjects.splice(bottleIndex, 1);
                     }, 100);
@@ -175,8 +183,9 @@ class World {
         if (this.character.pulledEndboss()) {
             this.level.enemies.forEach(enemy => {
                 if (enemy instanceof Endboss) {
-                    if (enemy.state === 'WALKING')
+                    if (enemy.state === 'WALKING') {
                         enemy.activateAlert();
+                    }
                 }
             });
         }
