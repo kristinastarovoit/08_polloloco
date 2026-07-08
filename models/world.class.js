@@ -106,9 +106,7 @@ class World {
     //             return;
     //         }
     //         if (this.character.isColliding(enemy)) {
-    //             // console.log('Collision with character', enemy);
     //             this.character.hit(enemy.dmg);
-    //             console.log('energy is', this.character.energy);
     //             this.healthBar.setPercentage(this.character.energy);
     //         }
     //     });
@@ -122,7 +120,6 @@ class World {
     //         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
     //             if (this.character.isCollidingTopToBottom(enemy)) {
     //                 enemy.hit(this.character.dmg);
-    //                 console.log('enemy energy is', enemy.energy);
     //                 this.character.speedY = 20;
     //             }
     //         }

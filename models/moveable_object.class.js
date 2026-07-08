@@ -63,21 +63,18 @@ class MoveableObject extends DrawableObject {
     }
 
     hit(dmg) {
-        console.log(this.constructor.name, "bekommt", dmg, "Schaden");
         this.energy -= dmg;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
         }
-        console.log("Neue Energie:", this.energy);
 
     }
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000; // converts ms to seconds
-        // console.log('isHurt()', { timepassed, lastHit: this.lastHit });
         return timepassed < 1; // true if last hit was less than 1 seconds ago
     }
 

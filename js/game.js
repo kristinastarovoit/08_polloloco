@@ -10,7 +10,6 @@ function init() {
     startscreen.classList.add('d_none');
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
-    console.log('my character is', world.character);
     const gameoverScreen = document.getElementById('gameover_screen');
     gameoverScreen.classList.add('d_none');
 }
@@ -37,7 +36,6 @@ window.addEventListener('keydown', (event) => {
             world.throwBottle();
         }
     }
-    console.log(event);
 });
 
 window.addEventListener('keyup', (event) => {
@@ -59,7 +57,6 @@ window.addEventListener('keyup', (event) => {
     if (event.keyCode == 68) {
         keyboard.D = false;
     }
-    // console.log(event);
 });
 
 // const fullscreen = document.getElementById('fullscreen');
