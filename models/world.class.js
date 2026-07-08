@@ -36,6 +36,7 @@ class World {
             // this.checkCharacterTopToBottomCollision();
             this.checkDeadEnemies();
             this.checkEndbossPulled();
+            this.checkGameOver();
         }, 1000 / 50)
     }
 
@@ -86,10 +87,10 @@ class World {
     };
 
     handleJumpOnEnemy(enemy) {
-            enemy.hit(this.character.dmg);
-            let enemyTopHitbox = enemy.y + enemy.offset.top;
-            this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
-            this.character.speedY = 20;
+        enemy.hit(this.character.dmg);
+        let enemyTopHitbox = enemy.y + enemy.offset.top;
+        this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
+        this.character.speedY = 20;
     };
 
     handlePlayerHit(enemy) {
@@ -234,6 +235,14 @@ class World {
         this.ctx.drawImage(
             moveableObject.img, -moveableObject.width / 2, 0, moveableObject.width, moveableObject.height);
         this.ctx.restore();
+    }
+
+    checkGameOver() {
+        if (this.character.isDead()) {
+            setTimeout(() => {
+                showGameoverScreen();
+            }, 900)
+        }
     }
 }
 

@@ -48,6 +48,7 @@ class Endboss extends MoveableObject {
     triggered = false;
     speed = 120;
     state = 'WALKING';
+    dmg = 20;
 
     constructor() {
         super();

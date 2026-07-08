@@ -11,6 +11,8 @@ function init() {
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
     console.log('my character is', world.character);
+    const gameoverScreen = document.getElementById('gameover_screen');
+    gameoverScreen.classList.add('d_none');
 }
 
 window.addEventListener('keydown', (event) => {
@@ -116,4 +118,11 @@ function openDialog() {
 function closeDialog() {
     const dialog = document.getElementById('controls_dialog');
     dialog.close();
+}
+
+function showGameoverScreen() {
+    const gameoverScreen = document.getElementById('gameover_screen');
+    gameoverScreen.classList.remove('d_none');
+    canvas = document.getElementById('canvas');
+    canvas.classList.add('d_none');
 }
