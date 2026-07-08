@@ -37,6 +37,7 @@ class World {
             this.checkDeadEnemies();
             this.checkEndbossPulled();
             this.checkGameOver();
+            this.checkWin();
         }, 1000 / 50)
     }
 
@@ -243,6 +244,15 @@ class World {
                 showGameoverScreen();
             }, 900)
         }
+    }
+    checkWin() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Endboss && enemy.isDead()) {
+                setTimeout(() => {
+                    showWinScreen();
+                }, 900)
+            }
+        })
     }
 }
 

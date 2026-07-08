@@ -126,3 +126,8 @@ function showGameoverScreen() {
     canvas = document.getElementById('canvas');
     canvas.classList.add('d_none');
 }
+
+function showWinScreen() {
+    const winScreen = document.getElementById('win_screen');
+    winScreen.classList.remove('d_none');
+}
