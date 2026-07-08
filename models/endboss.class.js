@@ -46,6 +46,8 @@ class Endboss extends MoveableObject {
     };
     energy = 80;
     triggered = false;
+    speed = 120;
+    state = 'WALKING';
 
     constructor() {
         super();
@@ -59,25 +61,51 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
+    activateAlert() {
+        this.triggered = true;
+    }
+
     animate() {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            }
-            else if (this.isHurt()) {
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+            } else {
+                this.handleAttackBehavior();
             }
-            else if (this.triggered) {
-                this.playAnimation(this.IMAGES_ALERT);
-            }
-            else {
-                this.playAnimation(this.IMAGES_WALKING);
-
-            }
-        }, 1000 / 10);
+        }, 200);
     }
 
-    activateAlert() {
-        this.triggered = true;
+    handleAttackBehavior() {
+        const now = Date.now();
+
+        if (this.state === 'WALKING') {
+            this.playAnimation(this.IMAGES_WALKING);
+            if (this.triggered) {
+                this.state = 'ALERT';
+                this.triggeredAt = now;
+            }
+        } 
+        
+        else if (this.state === 'ALERT') {
+            this.playAnimation(this.IMAGES_ALERT);
+            // Nach 3 Sekunden in den Angriffsmodus wechseln
+            if (now - this.triggeredAt >= 2000) {
+                this.state = 'ATTACKING';
+                this.lastAttackAt = now;
+            }
+        } 
+        
+        else if (this.state === 'ATTACKING') {
+            this.playAnimation(this.IMAGES_ATTACK);
+            // Alle 5 Sekunden einen Schub nach vorne
+            if (now - this.lastAttackAt >= 2500) {
+                // this.x -= 120; 
+                this.moveLeft();
+                this.lastAttackAt = now;
+            }
+        }
     }
+
 }

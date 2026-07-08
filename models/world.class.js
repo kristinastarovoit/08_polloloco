@@ -75,7 +75,7 @@ class World {
                 this.resolveCollision(enemy);
             }
         });
-    }
+    };
 
     resolveCollision(enemy) {
         if (this.character.isCollidingTopToBottom(enemy)) {
@@ -83,19 +83,19 @@ class World {
         } else {
             this.handlePlayerHit(enemy);
         }
-    }
+    };
 
     handleJumpOnEnemy(enemy) {
-        enemy.hit(this.character.dmg);
-        let enemyTopHitbox = enemy.y + enemy.offset.top;
-        this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
-        this.character.speedY = 20;
-    }
+            enemy.hit(this.character.dmg);
+            let enemyTopHitbox = enemy.y + enemy.offset.top;
+            this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
+            this.character.speedY = 20;
+    };
 
     handlePlayerHit(enemy) {
         this.character.hit(enemy.dmg);
         this.healthBar.setPercentage(this.character.energy);
-    }
+    };
 
     // checkEnemyCollisions() {
     //     this.level.enemies.forEach((enemy) => {
@@ -176,7 +176,8 @@ class World {
         if (this.character.pulledEndboss()) {
             this.level.enemies.forEach(enemy => {
                 if (enemy instanceof Endboss) {
-                    enemy.activateAlert();
+                    if (enemy.state === 'WALKING')
+                        enemy.activateAlert();
                 }
             });
         }
