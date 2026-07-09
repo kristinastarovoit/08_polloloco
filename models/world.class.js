@@ -1,6 +1,7 @@
 class World {
     character = new Character();
-    level = level1;
+    // level = createLevel1();
+    level = createLevel1();
     // enemies = level1.enemies;
     // clouds = level1.clouds;
     // backgroundObjects = level1.backgroundObjects;
@@ -259,6 +260,9 @@ class World {
                 }, 900)
             }
         })
+    }
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
 }
 

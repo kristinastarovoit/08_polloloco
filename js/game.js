@@ -10,8 +10,8 @@ function init() {
     startscreen.classList.add('d_none');
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
-    const gameoverScreen = document.getElementById('gameover_screen');
-    gameoverScreen.classList.add('d_none');
+    // const gameoverScreen = document.getElementById('gameover_screen');
+    // gameoverScreen.classList.add('d_none');
 }
 
 window.addEventListener('keydown', (event) => {
@@ -121,10 +121,20 @@ function showGameoverScreen() {
     const gameoverScreen = document.getElementById('gameover_screen');
     gameoverScreen.classList.remove('d_none');
     canvas = document.getElementById('canvas');
-    canvas.classList.add('d_none');
+    // canvas.classList.add('d_none');
 }
 
 function showWinScreen() {
     const winScreen = document.getElementById('win_screen');
     winScreen.classList.remove('d_none');
 }
+
+// intervalle alle stoppen, in ein array 
+function restartGame() {
+
+    document.getElementById('gameover_screen').classList.add('d_none');
+    document.getElementById('win_screen').classList.add('d_none');
+    world.clearAllIntervals();
+    world = new World(canvas, keyboard);
+}
+

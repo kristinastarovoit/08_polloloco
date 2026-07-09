@@ -10,7 +10,7 @@
 }
 
 :root {
-    --font-color-yellow: rgb(255,223,0);
+    --font-color-yellow: rgb(255, 223, 0);
 }
 
 body {
@@ -54,9 +54,23 @@ canvas {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 
-.screen, #startscreen {
-    height: auto;
-    width: 720px;
+.screen,
+#startscreen {
+    /* height: auto;
+    width: 720px; */
+    height: 480px;
+    width: auto;
+
 }
+
+.screen_overlay {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 180px;
+}
+
+/* // alle endscreens gleiche größe */

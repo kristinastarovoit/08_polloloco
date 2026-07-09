@@ -26,8 +26,8 @@
 </head>
 
 <body>
+    <h1 id="title" class="d_none">EL POLLO LOCO</h1>
     <div id="fullscreen">
-        <h1 id="title" class="d_none">EL POLLO LOCO</h1>
         <div id="screens">
 
             <div id="startscreen">
@@ -46,14 +46,14 @@
                     <p>throw bottle</p>
                 </dialog>
             </div>
-            <div id="gameover_screen" class="d_none">
+            <div id="gameover_screen" class="d_none screen_overlay">
                 <img class="screen gameover_screen" src="img/9_intro_outro_screens/game_over/game over!.png">
-                <button>Restart</button>
+                <button onclick="restartGame()">Restart</button>
                 <button>Go to Home</button>
             </div>
-            <div id="win_screen" class="d_none">
+            <div id="win_screen" class="d_none screen_overlay">
                 <img class="screen win_screen" src="img/You won, you lost/You Won B.png">
-                <button>Restart</button>
+                <button onclick="restartGame()">Restart</button>
                 <button>Go to Home</button>
             </div>
         </div>
