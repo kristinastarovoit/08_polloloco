@@ -11,7 +11,7 @@ class World {
     healthBar;
     bottleBar;
     coinBar;
-    bossBar;
+    // bossBar;
     camera_x = 0;
     throwableObjects = [];
 
@@ -25,7 +25,8 @@ class World {
         this.healthBar = this.level.statusBars[0]; // erkennt die einzelnen StatusBars
         this.bottleBar = this.level.statusBars[1];
         this.coinBar = this.level.statusBars[2];
-        this.bossBar = this.level.statusBars[3];
+        this.bossBar = this.level.bossBar;
+        // this.bossBar = this.level.statusBars[3];
     }
     setWorld() {
         this.character.world = this; // Kreuzreferenz für keyboard
@@ -211,6 +212,9 @@ class World {
 
         // fixe UI Elemente
         this.addObjectsToMap(this.level.statusBars);
+        if (this.character.pulledEndboss()) {
+            this.addToMap(this.level.bossBar);
+        }
 
         let self = this;
         requestAnimationFrame(function () {

@@ -39,8 +39,11 @@ function createLevel1() {
             new StatusBar(30, 0, 'IMAGES_HEALTHBAR', 100),
             new StatusBar(30, 50, 'IMAGES_BOTTLEBAR', 0),
             new StatusBar(30, 100, 'IMAGES_COINBAR', 0),
-            new StatusBar(500, 10, 'IMAGES_BOSSBAR', 100)
+            // new StatusBar(500, 10, 'IMAGES_BOSSBAR', 100)
         ],
+
+        new BossBar(),
+
         [
             new Bottle(),
             new Bottle(),
