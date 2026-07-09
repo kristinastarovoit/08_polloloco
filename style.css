@@ -47,9 +47,7 @@ canvas {
     cursor: pointer;
 }
 
-.d_none {
-    display: none;
-}
+
 
 #fullscreen {
     display: flex;
@@ -111,6 +109,10 @@ canvas {
 .home_button {
     bottom: 80%;
     right: 30%;
+}
+
+.d_none {
+    display: none;
 }
 
 /* // alle endscreens gleiche größe */

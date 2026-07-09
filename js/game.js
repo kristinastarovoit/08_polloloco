@@ -59,6 +59,14 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
+
+function goHome() {
+    document.getElementById('startscreen').classList.remove('d_none');
+    document.getElementById('canvas').classList.add('d_none');
+    document.getElementById('gameover_screen').classList.add('d_none');
+    document.getElementById('win_screen').classList.add('d_none');
+}
+
 // const fullscreen = document.getElementById('fullscreen');
 
 function fullscreen() {
