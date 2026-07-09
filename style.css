@@ -88,15 +88,29 @@ canvas {
     z-index: 5;
     background-color: var(--font-color-yellow);
     color: var(--font-color-orange);
-    font-family: 'Spicy Rice';
     font-size: 1.5rem;
     border: 5px outset;
     border-color: var(--font-color-orange);
 }
 
+.close_dialog_button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.close_dialog_button > img {
+    width: 20px;
+    height: 20px;
+}
+
 .fullscreen_buttons_wrapper {
     display: flex;
     flex-direction: row;
+}
+
+button {
+    font-family: 'Spicy Rice';
 }
 
 .start_button,
@@ -109,6 +123,39 @@ canvas {
 .home_button {
     bottom: 80%;
     right: 30%;
+}
+
+dialog {
+    max-width: 300px;
+    max-height: 300px;
+    overflow: hidden;
+    background-color: var(--font-color-orange);
+    border: 5px outset;
+    border-color: var(--font-color-yellow);
+    color: var(--font-color-yellow);
+}
+
+.dialog_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.close_dialog_button {
+    align-self: flex-end;
+}
+
+.controls_wrapper>img {
+    width: 80px;
+    height: 33px;
+}
+
+.controls_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
 }
 
 .d_none {

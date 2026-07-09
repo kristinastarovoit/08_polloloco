@@ -38,14 +38,26 @@
             <button onclick="openDialog()" class="screen_button controls_button">Controls</button>
 
             <dialog id="controls_dialog">
-                <button onclick="closeDialog()">close</button>
-                <h2>controls</h2>
-                <img>
-                <p>left right</p>
-                <img>
-                <p>jump</p>
-                <img>
-                <p>throw bottle</p>
+                <div class="dialog_wrapper">
+                    <button class="close_dialog_button" onclick="closeDialog()"><img
+                            src="img/controls/exitfullscreen.svg"></button>
+                    <div class="controls_wrapper">
+                        <img src="img/controls/arrows.svg" alt="left and right arrows">
+                        <p>walk left and right</p>
+                    </div>
+                    <div class="controls_wrapper">
+                        <img src="img/controls/space.svg">
+                        <p>jump</p>
+                    </div>
+                    <div class="controls_wrapper">
+                        <img src="img/controls/throw.svg">
+                        <p>throw bottle</p>
+                    </div>
+                    <div class="controls_wrapper">
+                        <img src="img/controls/esc.svg">
+                        <p>exit fullscreen</p>
+                    </div>
+                </div>
             </dialog>
         </div>
         <div id="gameover_screen" class="d_none screen_overlay">
@@ -60,8 +72,7 @@
         </div>
     </div>
     <div class="fullscreen_buttons_wrapper">
-        <button onclick="fullscreen()" class="ui_button"><img
-                src="img/controls/fullscreen.svg"></button>
+        <button onclick="fullscreen()" class="ui_button"><img src="img/controls/fullscreen.svg"></button>
         <!-- <button onclick="closeFullscreen()" class="ui_button"><img
                 src="img/controls/exitfullscreen.svg"></button> -->
     </div>
