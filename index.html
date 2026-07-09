@@ -28,38 +28,36 @@
 <body>
     <h1 id="title" class="d_none">EL POLLO LOCO</h1>
     <div id="fullscreen">
-        <div id="screens">
-
-            <div id="startscreen">
-                <img class="screen start_screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
-                <button onclick="init()">Start Game</button>
-                <button onclick="openDialog()">Controls</button>
-
-                <dialog id="controls_dialog">
-                    <button onclick="closeDialog()">close</button>
-                    <h2>controls</h2>
-                    <img>
-                    <p>left right</p>
-                    <img>
-                    <p>jump</p>
-                    <img>
-                    <p>throw bottle</p>
-                </dialog>
-            </div>
-            <div id="gameover_screen" class="d_none screen_overlay">
-                <img class="screen gameover_screen" src="img/9_intro_outro_screens/game_over/game over!.png">
-                <button onclick="restartGame()">Restart</button>
-                <button>Go to Home</button>
-            </div>
-            <div id="win_screen" class="d_none screen_overlay">
-                <img class="screen win_screen" src="img/You won, you lost/You Won B.png">
-                <button onclick="restartGame()">Restart</button>
-                <button>Go to Home</button>
-            </div>
-        </div>
-
         <canvas class="d_none" id="canvas" width="720" height="480">
         </canvas>
+
+        <div id="startscreen" class="screen_overlay">
+            <img class="screen start_screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
+            <button onclick="init()">Start Game</button>
+            <button onclick="openDialog()">Controls</button>
+
+            <dialog id="controls_dialog">
+                <button onclick="closeDialog()">close</button>
+                <h2>controls</h2>
+                <img>
+                <p>left right</p>
+                <img>
+                <p>jump</p>
+                <img>
+                <p>throw bottle</p>
+            </dialog>
+        </div>
+        <div id="gameover_screen" class="d_none screen_overlay">
+            <img class="screen gameover_screen" src="img/9_intro_outro_screens/game_over/game over!.png">
+            <button onclick="restartGame()" class="screen_button">Restart</button>
+            <button class="screen_button">Go to Home</button>
+        </div>
+        <div id="win_screen" class="d_none screen_overlay">
+            <img class="screen win_screen" src="img/You won, you lost/You Won B.png">
+            <button class="screen_button" onclick="restartGame()">Restart</button>
+            <button class="screen_button">Go to Home</button>
+        </div>
+
         <button onclick="fullscreen()" id="fullscreen_button" class="ui_button"><img
                 src="img/controls/fullscreen.svg"></button>
         <button onclick="closeFullscreen()" id="exit_fullscreen_button" class="ui_button"><img
