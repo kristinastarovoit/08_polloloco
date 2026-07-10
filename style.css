@@ -106,18 +106,19 @@ button {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    padding: 0 6px;
 }
 
 .start_button,
 .restart_button {
-    right: 50%;
+    right: 60%;
     bottom: 80%;
 }
 
 .controls_button,
 .home_button {
     bottom: 80%;
-    right: 30%;
+    right: 25%;
 }
 
 .mobile_control_button {
@@ -133,6 +134,8 @@ dialog {
     border: 5px outset;
     border-color: var(--font-color-yellow);
     color: var(--font-color-yellow);
+    margin: auto;
+    padding: 15px;
 }
 
 .dialog_wrapper {
@@ -160,6 +163,14 @@ dialog {
     flex-direction: row;
     align-items: center;
     gap: 20px;
+}
+
+.mobile_dialog_space {
+    display: none;
+}
+
+.mobile_dialog_throw {
+    display: none;
 }
 
 .turn_device_wrapper {
@@ -260,6 +271,22 @@ dialog {
         aspect-ratio: 720 / 480;
         max-height: 100vh;
         max-width: calc(100vh * (720 / 480));
+    }
+
+    .mobile_dialog_space {
+        display: block;
+    }
+
+    .mobile_dialog_throw {
+        display: block;
+    }
+
+    .dialog_space {
+        display: none;
+    }
+
+    .dialog_throw {
+        display: none;
     }
 }
 
