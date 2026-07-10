@@ -33,6 +33,17 @@
         <canvas class="d_none" id="canvas" width="720" height="480">
         </canvas>
 
+        <div class="mobile_controls_wrapper">
+            <div class="move_mobile_controls">
+                <button class="mobile_control_button"><img src="img/controls/mobile_left.svg"></button>
+                <button class="mobile_control_button"><img src="img/controls/mobile_right.svg"></button>
+            </div>
+            <div class="action_mobile_controls">
+                <button class="mobile_control_button"><img src="img/controls/mobile_jump.svg"></button>
+                <button class="mobile_control_button"><img src="img/controls/mobile_throw.svg"></button>
+            </div>
+        </div>
+
         <div id="startscreen" class="screen_overlay">
             <img class="screen start_screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
             <button onclick="init()" class="screen_button start_button">Start Game</button>
@@ -54,10 +65,10 @@
                         <img src="img/controls/throw.svg">
                         <p>throw bottle</p>
                     </div>
-                    <div class="controls_wrapper">
+                    <!-- <div class="controls_wrapper">
                         <img src="img/controls/esc.svg">
                         <p>exit fullscreen</p>
-                    </div>
+                    </div> -->
                 </div>
             </dialog>
         </div>
@@ -72,9 +83,9 @@
             <button onclick="goHome()" class="screen_button home_button">Go to Home</button>
         </div>
     </div>
-    <div class="fullscreen_buttons_wrapper">
-        <button onclick="fullscreen()" class="ui_button"><img src="img/controls/fullscreen.svg"></button>
-        <!-- <button onclick="closeFullscreen()" class="ui_button"><img
+    <!-- <div class="fullscreen_buttons_wrapper">
+        <button onclick="fullscreen()" class="ui_button"><img src="img/controls/fullscreen.svg"></button> -->
+    <!-- <button onclick="closeFullscreen()" class="ui_button"><img
                 src="img/controls/exitfullscreen.svg"></button> -->
     </div>
 </body>

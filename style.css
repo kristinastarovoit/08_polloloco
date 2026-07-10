@@ -39,9 +39,6 @@ canvas {
 .ui_button {
     height: 50px;
     width: 50px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
 }
 
 .content_wrapper {
@@ -78,7 +75,6 @@ canvas {
 }
 
 .screen_button {
-    cursor: pointer;
     position: absolute;
     z-index: 5;
     background-color: var(--font-color-yellow);
@@ -88,11 +84,9 @@ canvas {
     border-color: var(--font-color-orange);
 }
 
-.close_dialog_button {
-    border: none;
-    background-color: transparent;
+/* .close_dialog_button {
     cursor: pointer;
-}
+} */
 
 .close_dialog_button>img {
     width: 20px;
@@ -106,6 +100,9 @@ canvas {
 
 button {
     font-family: 'Spicy Rice';
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .start_button,
@@ -119,6 +116,23 @@ button {
     bottom: 80%;
     right: 30%;
 }
+
+.mobile_control_button {
+    width: 60px;
+    height: 60px;
+}
+
+.mobile_controls_wrapper {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 6;
+    width: 700px;
+    top: 78%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 dialog {
     max-width: 300px;
