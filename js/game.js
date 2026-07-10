@@ -15,6 +15,50 @@ function init() {
     // gameoverScreen.classList.add('d_none');
 }
 
+document.getElementById('btn_left').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.LEFT = true;
+});
+
+document.getElementById('btn_left').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.LEFT = false;
+});
+
+document.getElementById('btn_right').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = true;
+});
+
+document.getElementById('btn_right').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = false;
+});
+
+document.getElementById('btn_jump').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.SPACE = true;
+});
+
+document.getElementById('btn_jump').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.SPACE = false;
+});
+
+document.getElementById('btn_throw').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.D = true;
+    if (world) {
+        world.throwBottle();
+    }
+});
+
+document.getElementById('btn_throw').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.D = false;
+});
+
+
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;

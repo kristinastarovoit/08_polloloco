@@ -24,7 +24,7 @@
     <script src="models/throwable_object.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
-    <script src="js/game.js"></script>
+    <script src="js/game.js" defer></script>
 </head>
 
 <body>
@@ -35,12 +35,12 @@
 
         <div class="mobile_controls_wrapper">
             <div class="move_mobile_controls">
-                <button class="mobile_control_button"><img src="img/controls/mobile_left.svg"></button>
-                <button class="mobile_control_button"><img src="img/controls/mobile_right.svg"></button>
+                <button id="btn_left" class="mobile_control_button"><img src="img/controls/mobile_left.svg"></button>
+                <button id="btn_right" class="mobile_control_button"><img src="img/controls/mobile_right.svg"></button>
             </div>
             <div class="action_mobile_controls">
-                <button class="mobile_control_button"><img src="img/controls/mobile_jump.svg"></button>
-                <button class="mobile_control_button"><img src="img/controls/mobile_throw.svg"></button>
+                <button id="btn_jump" class="mobile_control_button"><img src="img/controls/mobile_jump.svg"></button>
+                <button id="btn_throw" class="mobile_control_button"><img src="img/controls/mobile_throw.svg"></button>
             </div>
         </div>
 
