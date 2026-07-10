@@ -71,6 +71,8 @@ class Character extends MoveableObject {
     bottles;
     dmg = 10;
     lastMoveTime;
+    isDeadSoundPlayed = false;
+    isSnoringSoundPlayed = false;
 
     constructor() {
         super();
@@ -85,6 +87,30 @@ class Character extends MoveableObject {
         this.bottles = 0;
         this.applyGravity();
         this.animate();
+        this.isWalkingSoundPlaying = false;
+        this.startMovementSoundLoop();
+    }
+
+    startMovementSoundLoop() {
+        setInterval(() => {
+            this.updateWalkSound();
+        }, 1000 / 30);
+    }
+
+    updateWalkSound() {
+        const walking = this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
+
+        if (walking && !this.isWalkingSoundPlaying) {
+            SoundHub.playSound(SoundHub.CHARACTER_WALK);
+            this.isWalkingSoundPlaying = true;
+            SoundHub.CHARACTER_WALK.onended = () => {
+                this.isWalkingSoundPlaying = false;
+            };
+        }
+        if (!walking && this.isWalkingSoundPlaying) {
+            SoundHub.CHARACTER_WALK.pause();
+            this.isWalkingSoundPlaying = false;
+        }
     }
 
     animate() {
@@ -115,36 +141,60 @@ class Character extends MoveableObject {
                 clearInterval(movement);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURTING);
+                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                this.isSnoringSoundPlayed = false;
             }
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
+                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                this.isSnoringSoundPlayed = false;
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 // Walk animation
                 this.playAnimation(this.IMAGES_WALKING);
+                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                this.isSnoringSoundPlayed = false;
             }
             else if (inactiveTime > 10000) {
                 // 5 Sekunden nichts gemacht → Spezial-Idle
                 this.playAnimation(this.IMAGES_INACTIVE);
+                if (!this.isSnoringSoundPlayed) {
+                    SoundHub.CHARACTER_SNORE.loop = true;  // ← Loop aktivieren
+                    SoundHub.playSound(SoundHub.CHARACTER_SNORE);
+                    this.isSnoringSoundPlayed = true;
+                }
             }
             else {
                 this.playAnimation(this.IMAGES_IDLE);
+                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                this.isSnoringSoundPlayed = false;
             }
         }, 200);
     }
 
+
     hit(dmg) {
-        if (!this.isHurt()) { // immunity für eine sekunde
+        if (!this.isHurt()) {
             this.energy -= dmg;
             if (this.energy < 0) {
                 this.energy = 0;
-            } else {
-                this.lastHit = new Date().getTime(); //Zeitpunkt der Verletzung in Zahlenform gespeichert
             }
+            if (this.isDead()) {
+                if (!this.isDeadSoundPlayed) {  // ← Nur einmal abspielen
+                    SoundHub.playSound(SoundHub.CHARACTER_DEAD);
+                    this.isDeadSoundPlayed = true;
+                }
+                return;
+            }
+
+            this.lastHit = new Date().getTime();
         }
     }
+
     pulledEndboss() {
         return this.x >= 1700;
     }
+
+
 }
 

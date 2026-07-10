@@ -45,6 +45,7 @@ class World {
         }, 1000 / 50)
     }
 
+
     // erstellt bottle wenn D gedrückt wird und der Character mindestens 20 Flaschen hat
     throwBottle() {
         if (this.character.bottles >= 20) {
@@ -55,25 +56,7 @@ class World {
         }
     }
 
-    // checkEnemyCollisions() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         if (enemy.isDead()) {
-    //             return;
-    //         }
-    //         if (this.character.isColliding(enemy)) {
-    //             if (this.character.isCollidingTopToBottom(enemy)) {
-    //                 enemy.hit(this.character.dmg);
-    //                 let enemyTopHitbox = enemy.y + enemy.offset.top;
-    //                 this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
-    //                 this.character.speedY = 20;
-    //             }
-    //             else {
-    //                 this.character.hit(enemy.dmg);
-    //                 this.healthBar.setPercentage(this.character.energy);
-    //             }
-    //         }
-    //     });
-    // }
+
 
     checkEnemyCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -102,40 +85,17 @@ class World {
     };
 
     handlePlayerHit(enemy) {
+        SoundHub.playSound(SoundHub.CHARACTER_HURT);
         this.character.hit(enemy.dmg);
         this.healthBar.setPercentage(this.character.energy);
     };
 
-    // checkEnemyCollisions() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         if (enemy.isDead()) { return; }
-    //         if (this.character.isCollidingTopToBottom(enemy)) {
-    //             return;
-    //         }
-    //         if (this.character.isColliding(enemy)) {
-    //             this.character.hit(enemy.dmg);
-    //             this.healthBar.setPercentage(this.character.energy);
-    //         }
-    //     });
-    // }
 
-    // checkCharacterTopToBottomCollision() {
-    //     this.level.enemies.forEach((enemy, enemyIndex) => {
-    //         if (enemy.isDead()) {
-    //             return;
-    //         }
-    //         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
-    //             if (this.character.isCollidingTopToBottom(enemy)) {
-    //                 enemy.hit(this.character.dmg);
-    //                 this.character.speedY = 20;
-    //             }
-    //         }
-    //     })
-    // }
 
     checkDeadEnemies() {
         this.level.enemies.forEach(enemy => {
             if (enemy.isDead() && !enemy.deathTime) {
+                SoundHub.playSound(SoundHub.CHICKEN_DEAD);
                 enemy.deathTime = Date.now();
                 enemy.speed = 0;
                 enemy.dmg = 0;
@@ -152,10 +112,12 @@ class World {
         this.level.collectables.forEach((collectable, index) => {
             if (this.character.isColliding(collectable)) {
                 if (collectable instanceof Coin) {
+                    SoundHub.playSound(SoundHub.COIN_COLLECT);
                     this.character.coins += 20;
                     this.coinBar.setPercentage(this.character.coins);
                 }
                 if (collectable instanceof Bottle) {
+                    SoundHub.playSound(SoundHub.BOTTLE_COLLECT);
                     this.character.bottles += 20;
                     this.bottleBar.setPercentage(this.character.bottles);
                 }
@@ -168,6 +130,7 @@ class World {
         this.throwableObjects.forEach((bottle, bottleIndex) => {
             this.level.enemies.forEach((enemy, enemyIndex) => {
                 if (bottle.isColliding(enemy) && !bottle.bottleHit) {
+                    SoundHub.playSound(SoundHub.BOTTLE_HIT);
                     bottle.bottleHit = true;
                     enemy.hit(bottle.dmg);
                     if (enemy instanceof Endboss) {
@@ -187,6 +150,7 @@ class World {
                 if (enemy instanceof Endboss) {
                     if (enemy.state === 'WALKING') {
                         enemy.activateAlert();
+                        SoundHub.playSound(SoundHub.ENDBOSS_ATTACK);
                     }
                 }
             });
@@ -256,6 +220,7 @@ class World {
             }, 900)
         }
     }
+
     checkWin() {
         this.level.enemies.forEach((enemy) => {
             if (enemy instanceof Endboss && enemy.isDead()) {
@@ -301,5 +266,52 @@ class World {
 //     let self = this;
 //     requestAnimationFrame(function () {
 //         self.draw();
+//     })
+// }
+
+// checkEnemyCollisions() {
+//     this.level.enemies.forEach((enemy) => {
+//         if (enemy.isDead()) {
+//             return;
+//         }
+//         if (this.character.isColliding(enemy)) {
+//             if (this.character.isCollidingTopToBottom(enemy)) {
+//                 enemy.hit(this.character.dmg);
+//                 let enemyTopHitbox = enemy.y + enemy.offset.top;
+//                 this.character.y = enemyTopHitbox - this.character.height + this.character.offset.bottom;
+//                 this.character.speedY = 20;
+//             }
+//             else {
+//                 this.character.hit(enemy.dmg);
+//                 this.healthBar.setPercentage(this.character.energy);
+//             }
+//         }
+//     });
+// }
+
+// checkEnemyCollisions() {
+//     this.level.enemies.forEach((enemy) => {
+//         if (enemy.isDead()) { return; }
+//         if (this.character.isCollidingTopToBottom(enemy)) {
+//             return;
+//         }
+//         if (this.character.isColliding(enemy)) {
+//             this.character.hit(enemy.dmg);
+//             this.healthBar.setPercentage(this.character.energy);
+//         }
+//     });
+// }
+
+// checkCharacterTopToBottomCollision() {
+//     this.level.enemies.forEach((enemy, enemyIndex) => {
+//         if (enemy.isDead()) {
+//             return;
+//         }
+//         if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
+//             if (this.character.isCollidingTopToBottom(enemy)) {
+//                 enemy.hit(this.character.dmg);
+//                 this.character.speedY = 20;
+//             }
+//         }
 //     })
 // }

@@ -10,6 +10,7 @@ function init() {
     startscreen.classList.add('d_none');
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
+    SoundHub.playSound(SoundHub.GAME_START);
     // const gameoverScreen = document.getElementById('gameover_screen');
     // gameoverScreen.classList.add('d_none');
 }
@@ -29,6 +30,7 @@ window.addEventListener('keydown', (event) => {
     }
     if (event.keyCode == 32) {
         keyboard.SPACE = true;
+        SoundHub.playSound(SoundHub.CHARACTER_JUMP);
     }
     if (event.keyCode == 68) {
         keyboard.D = true;
@@ -79,14 +81,14 @@ function fullscreen() {
 function openFullscreen(element) {
     if (element.requestFullscreen) {
         element.requestFullscreen();
-        // resizeCanvasFullscreen();
+        resizeCanvasFullscreen();
     } else if (element.webkitRequestFullscreen) { /* Safari */
         element.webkitRequestFullscreen();
-        // resizeCanvasFullscreen();
+        resizeCanvasFullscreen();
 
     } else if (element.msRequestFullscreen) { /* IE11 */
         element.msRequestFullscreen();
-        // resizeCanvasFullscreen();
+        resizeCanvasFullscreen();
     }
 }
 
@@ -105,15 +107,15 @@ function closeFullscreen() {
 
     }
 }
-// function resizeCanvasFullscreen() {
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-// }
+function resizeCanvasFullscreen() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
 
-// function resizeCanvasNormal() {
-//     canvas.width = 720;
-//     canvas.height = 480;
-// }
+function resizeCanvasNormal() {
+    canvas.width = 720;
+    canvas.height = 480;
+}
 
 function openDialog() {
     const dialog = document.getElementById('controls_dialog');
