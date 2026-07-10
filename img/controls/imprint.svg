@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.029873,0,0,0.029873,-311.086104,-518.61609)">
+        <path d="M10776,17723C11038,17462 11462,17462 11724,17723C11986,17985 11986,18410 11724,18671C11462,18933 11038,18933 10776,18671C10515,18409 10515,17985 10776,17723ZM10859,17763L10816,17807C10609,18036 10616,18390 10837,18610C11058,18831 11412,18838 11641,18632L11684,18588C11891,18359 11884,18005 11663,17784C11442,17563 11089,17556 10859,17763Z" style="fill:rgb(212,71,20);stroke:rgb(212,71,20);stroke-width:83.69px;"/>
+    </g>
+    <g transform="matrix(1.96673,0,0,1.679313,-14.520603,-16.299198)">
+        <g transform="matrix(18.597027,0,0,18.597027,22.587194,32.043522)">
+        </g>
+        <text x="17.584px" y="32.044px" style="font-family:'SpicyRice-Regular', 'Spicy Rice', sans-serif;font-size:18.597px;fill:rgb(255,223,0);">i</text>
+    </g>
+</svg>

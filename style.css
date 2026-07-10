@@ -47,7 +47,14 @@ canvas {
 .ui_button {
     height: 50px;
     width: 50px;
+    padding: 0;
 }
+
+.mute_button>img {
+    height: 50px;
+    width: 50px;
+}
+
 
 .content_wrapper {
     display: flex;
@@ -109,6 +116,17 @@ button {
     padding: 0 6px;
 }
 
+.additional_info_wrapper {
+    position: absolute;
+    z-index: 10;
+    top: 2%;
+    right: 2%;
+}
+
+/* .mute_button {
+    background-image: url('img/8_coin/coin_1.png');
+} */
+
 .start_button,
 .restart_button {
     right: 60%;
@@ -151,7 +169,6 @@ dialog {
 
 
 /* dialog controls!!!!! */
-
 .controls_wrapper>img {
     width: 80px;
     height: 33px;
@@ -174,10 +191,6 @@ dialog {
 }
 
 .turn_device_wrapper {
-    display: none;
-}
-
-.d_none {
     display: none;
 }
 

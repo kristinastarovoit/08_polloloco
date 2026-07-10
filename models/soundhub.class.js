@@ -30,6 +30,8 @@ class SoundHub {
         SoundHub.GAME_START
     ];
 
+
+
     // Spielt eine einzelne Audiodatei ab
     static playSound(sound) {  // instrumentId nur wichtig für die Visualisierung
         sound.volume = 0.2;  // Setzt die Lautstärke auf 0.2 = 20% / 1 = 100%
@@ -40,9 +42,23 @@ class SoundHub {
 
     // Stoppt das Abspielen aller Audiodateien
     static stopAllSounds() {
-        AudioHub.allSounds.forEach(sound => {
+        SoundHub.allSounds.forEach(sound => {
             sound.pause();  // Pausiert jedes Audio in der Liste
         });
         // document.getElementById('volume').value = 0.2;  // Setzt den Sound-Slider wieder auf 0.2
+
     }
-}
+
+    // static stopAllSounds() {
+    //     // SoundHub.isMuted = !SoundHub.isMuted;
+    //     SoundHub.allSounds.forEach(sound => {
+    //         sound.muted = true;
+    //         // sound.muted = SoundHub.isMuted;
+    //         // sound.pause();  // Pausiert jedes Audio in der Liste
+    //         // if (!sound.muted) {
+    //         //     sound.muted = true;
+    //         // } else if (sound.muted) {
+    //         //     sound.muted = false;
+    //         // }
+    //     }); }
+    }

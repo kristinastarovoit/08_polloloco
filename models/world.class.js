@@ -217,7 +217,8 @@ class World {
         if (this.character.isDead()) {
             setTimeout(() => {
                 showGameoverScreen();
-            }, 900)
+                SoundHub.stopAllSounds();
+            }, 1000)
         }
     }
 
@@ -226,10 +227,12 @@ class World {
             if (enemy instanceof Endboss && enemy.isDead()) {
                 setTimeout(() => {
                     showWinScreen();
-                }, 900)
+                    SoundHub.stopAllSounds();
+                }, 1000)
             }
         })
     }
+    
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
