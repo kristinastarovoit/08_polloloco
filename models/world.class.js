@@ -76,6 +76,7 @@ class World {
 
     handleJumpOnEnemy(enemy) {
         enemy.hit(this.character.dmg);
+        SoundHub.playSound(SoundHub.CHICKEN_DEAD);
         if (enemy instanceof Endboss) {
             this.bossBar.setPercentage(enemy.energy);
         };
@@ -133,6 +134,7 @@ class World {
                     SoundHub.playSound(SoundHub.BOTTLE_HIT);
                     bottle.bottleHit = true;
                     enemy.hit(bottle.dmg);
+                    SoundHub.playSound(SoundHub.CHICKEN_DEAD);
                     if (enemy instanceof Endboss) {
                         this.bossBar.setPercentage(enemy.energy);
                     }
