@@ -1,12 +1,9 @@
-/* spicy-rice-regular - latin */
 @font-face {
     font-display: swap;
-    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
     font-family: 'Spicy Rice';
     font-style: normal;
     font-weight: 400;
     src: url('font/SpicyRice-Regular.ttf') format('woff2');
-    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 :root {
@@ -47,9 +44,7 @@ canvas {
     cursor: pointer;
 }
 
-
-
-#fullscreen {
+.content_wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,7 +94,7 @@ canvas {
     cursor: pointer;
 }
 
-.close_dialog_button > img {
+.close_dialog_button>img {
     width: 20px;
     height: 20px;
 }

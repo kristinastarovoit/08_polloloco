@@ -63,6 +63,7 @@ window.addEventListener('keyup', (event) => {
 
 
 function goHome() {
+    world.clearAllIntervals();  // removes win and gameoverscreen check
     document.getElementById('startscreen').classList.remove('d_none');
     document.getElementById('canvas').classList.add('d_none');
     document.getElementById('gameover_screen').classList.add('d_none');
@@ -71,51 +72,59 @@ function goHome() {
 
 // const fullscreen = document.getElementById('fullscreen');
 
-function fullscreen() {
-    const fullscreen = document.getElementById('fullscreen');
-    // const fullscreenButton = document.getElementById('fullscreen_button');
-    // fullscreenButton.classList.toggle('d_none');
-    openFullscreen(fullscreen);
-}
+// function fullscreen() {
+//     const fullscreen = document.getElementById('fullscreen');
+//     // const fullscreenButton = document.getElementById('fullscreen_button');
+//     // fullscreenButton.classList.toggle('d_none');
+//     openFullscreen(fullscreen);
+// }
 
-function openFullscreen(element) {
-    if (element.requestFullscreen) {
-        element.requestFullscreen();
-        resizeCanvasFullscreen();
-    } else if (element.webkitRequestFullscreen) { /* Safari */
-        element.webkitRequestFullscreen();
-        resizeCanvasFullscreen();
+// function openFullscreen(element) {
+//     if (element.requestFullscreen) {
+//         element.requestFullscreen();
+//         resizeCanvasFullscreen();
+//     } else if (element.webkitRequestFullscreen) { /* Safari */
+//         element.webkitRequestFullscreen();
+//         resizeCanvasFullscreen();
 
-    } else if (element.msRequestFullscreen) { /* IE11 */
-        element.msRequestFullscreen();
-        resizeCanvasFullscreen();
-    }
-}
+//     } else if (element.msRequestFullscreen) { /* IE11 */
+//         element.msRequestFullscreen();
+//         resizeCanvasFullscreen();
+//     }
+// }
 
-function closeFullscreen() {
-    // const fullscreenButton = document.getElementById('fullscreen_button');
-    // fullscreenButton.classList.toggle('d_none');
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-        // resizeCanvasNormal();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-        document.webkitExitFullscreen();
-        // resizeCanvasNormal();
-    } else if (document.msExitFullscreen) { /* IE11 */
-        document.msExitFullscreen();
-        // resizeCanvasNormal();
+// function closeFullscreen() {
+//     // const fullscreenButton = document.getElementById('fullscreen_button');
+//     // fullscreenButton.classList.toggle('d_none');
+//     if (document.exitFullscreen) {
+//         document.exitFullscreen();
+//         resizeCanvasNormal();
+//     } else if (document.webkitExitFullscreen) { /* Safari */
+//         document.webkitExitFullscreen();
+//         resizeCanvasNormal();
+//     } else if (document.msExitFullscreen) { /* IE11 */
+//         document.msExitFullscreen();
+//         resizeCanvasNormal();
 
-    }
-}
-function resizeCanvasFullscreen() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
+//     }
+// }
+// function resizeCanvasFullscreen() {
+//     console.log('innerWidth:', window.innerWidth, 'innerHeight:', window.innerHeight);
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+//     canvas.style.transform = 'translate(0, 0)';  // ← Entferne die Zentrierung
+//     canvas.style.left = '0';
+//     canvas.style.top = '0';
+//     console.log('Canvas width:', canvas.width, 'Canvas height:', canvas.height);
 
-function resizeCanvasNormal() {
-    canvas.width = 720;
-    canvas.height = 480;
-}
+//     // canvas.style.width = '100%';
+//     // canvas.style.height = '100%';
+// }
+
+// function resizeCanvasNormal() {
+//     canvas.width = 720;
+//     canvas.height = 480;
+// }
 
 function openDialog() {
     const dialog = document.getElementById('controls_dialog');
