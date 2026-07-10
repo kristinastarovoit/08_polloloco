@@ -218,7 +218,10 @@ class World {
             setTimeout(() => {
                 showGameoverScreen();
                 SoundHub.stopAllSounds();
-            }, 1000)
+            }, 1000);
+            setTimeout(() => {
+                this.clearAllIntervals();
+            }, 1500);
         }
     }
 
@@ -228,11 +231,14 @@ class World {
                 setTimeout(() => {
                     showWinScreen();
                     SoundHub.stopAllSounds();
-                }, 1000)
+                }, 1000);
+                setTimeout(() => {
+                    this.clearAllIntervals();
+                }, 1500);
             }
         })
     }
-    
+
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
