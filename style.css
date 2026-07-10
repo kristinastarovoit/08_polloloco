@@ -12,6 +12,13 @@
     --shadow-color-light-orange: #fa9702;
 }
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -22,6 +29,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
+    /* width: 100vw; */
     font-family: 'Spicy Rice';
 }
 
@@ -47,31 +55,29 @@ canvas {
     align-items: center;
     flex-direction: column;
     position: relative;
-    height: 100vh;
-    width: 100vw;
     overflow: hidden;
-}
-
-.screen {
     height: 480px;
     width: 720px;
-}
+    aspect-ratio: 720 / 480;
 
-.screen_overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    height: 480px;
-    width: 720px;
 }
 
 #canvas {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.screen,
+.screen_overlay {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .screen_button {
@@ -84,9 +90,6 @@ canvas {
     border-color: var(--font-color-orange);
 }
 
-/* .close_dialog_button {
-    cursor: pointer;
-} */
 
 .close_dialog_button>img {
     width: 20px;
@@ -122,18 +125,6 @@ button {
     height: 60px;
 }
 
-.mobile_controls_wrapper {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    z-index: 6;
-    width: 700px;
-    top: 78%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
 dialog {
     max-width: 300px;
     max-height: 300px;
@@ -155,11 +146,15 @@ dialog {
     align-self: flex-end;
 }
 
+
+/* dialog controls!!!!! */
+
 .controls_wrapper>img {
     width: 80px;
     height: 33px;
 }
 
+/* dialog controls!!!!! */
 .controls_wrapper {
     display: flex;
     flex-direction: row;
@@ -167,8 +162,107 @@ dialog {
     gap: 20px;
 }
 
+.turn_device_wrapper {
+    display: none;
+}
+
 .d_none {
     display: none;
 }
 
-/* // alle endscreens gleiche größe */
+#btn_left {
+    background-image: url('img/controls/mobile_left.svg');
+}
+
+#btn_right {
+    background-image: url('img/controls/mobile_right.svg');
+}
+
+#btn_jump {
+    background-image: url('img/controls/mobile_jump.svg');
+}
+
+#btn_throw {
+    background-image: url('img/controls/mobile_throw.svg');
+}
+
+@media (hover: none) and (orientation: portrait) {
+    body {
+        background-color: #d44714;
+        background-image: none;
+    }
+
+    h1,
+    .content_wrapper {
+        display: none;
+    }
+
+    .turn_device_wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10;
+        text-align: center;
+        color: var(--font-color-yellow);
+        font-size: 1.6rem;
+    }
+
+    .turn_device_wrapper img {
+        width: 280px;
+        height: auto;
+        animation: rotatePhone 2s ease-in-out infinite;
+    }
+}
+
+@keyframes rotatePhone {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(90deg);
+    }
+}
+
+@media (hover: none) and (orientation: landscape) {
+    .turn_device_wrapper {
+        display: none;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .mobile_controls_wrapper {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        z-index: 6;
+        width: 100%;
+        bottom: 2%;
+        padding: 0 30px;
+    }
+
+    .move_mobile_controls,
+    .action_mobile_controls {
+        display: flex;
+        gap: 20px;
+    }
+
+    .content_wrapper {
+        width: 100vw;
+        height: auto;
+        aspect-ratio: 720 / 480;
+        max-height: 100vh;
+        max-width: calc(100vh * (720 / 480));
+    }
+}
+
+.d_none {
+    display: none !important;
+}
