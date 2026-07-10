@@ -46,7 +46,7 @@ class Endboss extends MoveableObject {
     };
     energy = 100;
     triggered = false;
-    speed = 120;
+    speed = 180;
     state = 'WALKING';
     dmg = 20;
 
@@ -92,7 +92,7 @@ class Endboss extends MoveableObject {
         else if (this.state === 'ALERT') {
             this.playAnimation(this.IMAGES_ALERT);
             // Nach 3 Sekunden in den Angriffsmodus wechseln
-            if (now - this.triggeredAt >= 2000) {
+            if (now - this.triggeredAt >= 1500) {
                 this.state = 'ATTACKING';
                 this.lastAttackAt = now;
             }
@@ -100,9 +100,8 @@ class Endboss extends MoveableObject {
 
         else if (this.state === 'ATTACKING') {
             this.playAnimation(this.IMAGES_ATTACK);
-            // Alle 5 Sekunden einen Schub nach vorne
-            if (now - this.lastAttackAt >= 2500) {
-                // this.x -= 120; 
+            // Alle x Sekunden einen Schub nach vorne
+            if (now - this.lastAttackAt >= 1500) {
                 this.moveLeft();
                 this.lastAttackAt = now;
             }

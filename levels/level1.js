@@ -11,6 +11,10 @@ function createLevel1() {
             new Endboss()
         ],
         [
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
             new Cloud()
         ],
         [
@@ -49,6 +53,8 @@ function createLevel1() {
             new Bottle(),
             new Bottle(),
             new Bottle(),
+            new Bottle(),
+            new Coin(),
             new Coin(),
             new Coin(),
             new Coin(),
