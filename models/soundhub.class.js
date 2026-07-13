@@ -70,6 +70,9 @@ class SoundHub {
         SoundHub.allSounds.forEach(sound => {
             sound.muted = SoundHub.isMuted;
         });
+        if (!SoundHub.isMuted) {
+            SoundHub.playSound(SoundHub.BG_MUSIC);
+        }
         console.log(SoundHub.isMuted);
         document.getElementById('mute_button').blur();
     }
