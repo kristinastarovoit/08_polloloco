@@ -192,7 +192,7 @@ class Character extends MoveableObject {
     }
 
     pulledEndboss() {
-        return this.x >= 1700;
+        return this.x >= 2200;
     }
 
 

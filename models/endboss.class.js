@@ -92,7 +92,7 @@ class Endboss extends MoveableObject {
         else if (this.state === 'ALERT') {
             this.playAnimation(this.IMAGES_ALERT);
             // Nach 3 Sekunden in den Angriffsmodus wechseln
-            if (now - this.triggeredAt >= 1500) {
+            if (now - this.triggeredAt >= 1000) {
                 this.state = 'ATTACKING';
                 this.lastAttackAt = now;
             }

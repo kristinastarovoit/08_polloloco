@@ -14,6 +14,7 @@ class World {
     // bossBar;
     camera_x = 0;
     throwableObjects = [];
+    bossBarActivated = false;
 
     constructor(canvas, keyboard, level) {
         this.ctx = canvas.getContext('2d');
@@ -149,6 +150,7 @@ class World {
 
     checkEndbossPulled() {
         if (this.character.pulledEndboss()) {
+            this.bossBarActivated = true;
             this.level.enemies.forEach(enemy => {
                 if (enemy instanceof Endboss) {
                     if (enemy.state === 'WALKING') {
@@ -179,7 +181,7 @@ class World {
 
         // fixe UI Elemente
         this.addObjectsToMap(this.level.statusBars);
-        if (this.character.pulledEndboss()) {
+        if (this.bossBarActivated) {
             this.addToMap(this.level.bossBar);
         }
 
