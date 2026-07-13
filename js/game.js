@@ -8,6 +8,7 @@ function startGame(levelNumber) {
 
     if (levelNumber === 1) init(createLevel1());
     if (levelNumber === 2) init(createLevel2());
+    SoundHub.playSound(SoundHub.BG_MUSIC);
 }
 
 function restartCurrentLevel() {
@@ -242,7 +243,7 @@ function showWinScreen() {
     }
 }
 
-// intervalle alle stoppen, in ein array 
+// intervalle alle stoppen, in ein array
 // function restartGame() {
 
 //     document.getElementById('gameover_screen').classList.add('d_none');

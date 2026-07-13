@@ -3,11 +3,18 @@ function createLevel2() {
         [
             new Chicken(),
             new SmallChicken(),
+            new SmallChicken(),
+            new SmallChicken(),
             new Chicken(),
             new SmallChicken(),
-            new Endboss(),
             new Chicken(),
-            new SmallChicken()
+            new SmallChicken(),
+            new Chicken(),
+            new SmallChicken(),
+            new Chicken(),
+            new Chicken(),
+            new SmallChicken(),
+            new Endboss()
         ],
         [
             new Cloud(),
@@ -37,6 +44,10 @@ function createLevel2() {
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 3 * 720),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 3 * 720),
             new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 3 * 720),
+            new BackgroundObject('img/5_background/layers/air.png', 4 * 720),
+            new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 4 * 720),
+            new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 4 * 720),
+            new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 4 * 720)
         ],
         [
             new StatusBar(30, 0, 'IMAGES_HEALTHBAR', 100),

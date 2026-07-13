@@ -15,7 +15,7 @@ class SoundHub {
     static ENDBOSS_ATTACK = new Audio('audio/endboss/endbossApproach.wav'); // check
 
     static GAME_START = new Audio('audio/game/gameStart.mp3'); // check
-
+    static BG_MUSIC = new Audio('audio/game/mixkit-medieval-show-fanfare-announcement-226.wav')
     static allSounds = [
         SoundHub.CHARACTER_WALK,
         SoundHub.CHARACTER_DEAD,
@@ -36,17 +36,25 @@ class SoundHub {
             return;
         }
         // sound.muted = false;
-        sound.volume = 0.2;
-        sound.currentTime = 0;
+        sound.volume = 0.1;
+
+        if (sound === SoundHub.BG_MUSIC) {
+            sound.loop = true;
+        } else {
+            sound.currentTime = 0;
+        }
+        // sound.currentTime = 0;
         sound.play();
     }
 
     // Stoppt das Abspielen aller Audiodateien
     static stopAllSounds() {
+        SoundHub.isMuted = true;
         SoundHub.allSounds.forEach(sound => {
             // sound.pause();  // Pausiert jedes Audio in der Liste
             sound.muted = true;
         });
+
         // document.getElementById('volume').value = 0.2;  // Setzt den Sound-Slider wieder auf 0.2
 
     }
@@ -56,6 +64,7 @@ class SoundHub {
         SoundHub.allSounds.forEach(sound => {
             sound.muted = SoundHub.isMuted;
         });
+        console.log(SoundHub.isMuted);
     }
 
     // static stopAllSounds() {
