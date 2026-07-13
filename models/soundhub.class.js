@@ -31,6 +31,10 @@ class SoundHub {
     ];
     static isMuted = false;
 
+    /**
+     * Loads the saved mute state from localStorage and applies it
+     * to the SoundHub.
+     */
     static loadMuteState() {
         const saved = localStorage.getItem('soundhub.isMuted');
         if (saved !== null) {
@@ -38,16 +42,22 @@ class SoundHub {
         }
     }
 
+    /**
+     * Saves the current mute state to localStorage so it can be restored later.
+     */
     static saveMuteState() {
         localStorage.setItem('soundhub.isMuted', JSON.stringify(SoundHub.isMuted));
     }
 
+    /**
+     * Plays a sound unless muted. Resets non‑music sounds before playback
+     * and configures looping/volume for background music.
+     */
     static playSound(sound) {
         if (SoundHub.isMuted) {
             return;
         }
         sound.volume = 0.2;
-
         if (sound === SoundHub.BG_MUSIC) {
             sound.loop = true;
             sound.volume = 1;
@@ -57,6 +67,9 @@ class SoundHub {
         sound.play();
     }
 
+    /**
+     * Stops all registered sounds and resets their playback position.
+     */
     static stopAllSounds() {
         SoundHub.allSounds.forEach(sound => {
             sound.pause();
@@ -64,6 +77,12 @@ class SoundHub {
         });
     }
 
+    /**
+     * Toggles the global mute state, updates all sound objects,
+     * saves the preference, and restarts background music when unmuted.
+     * The blur() call prevents the space key from re-triggering the mute button
+     * after it was clicked (avoids unwanted focus activation).
+     */
     static toggleMute() {
         SoundHub.isMuted = !SoundHub.isMuted;
         SoundHub.saveMuteState();
@@ -77,6 +96,9 @@ class SoundHub {
         document.getElementById('mute_button').blur();
     }
 
+    /**
+     * Fully unmutes all sounds and updates stored preferences.
+     */
     static unmuteAll() {
         SoundHub.isMuted = false;
         SoundHub.saveMuteState();

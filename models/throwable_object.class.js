@@ -32,6 +32,10 @@ class ThrowableObject extends MoveableObject {
         this.checkBottleGroundHit();
     }
 
+    /**
+    * Throws the bottle by giving it an upward speed, applying gravity,
+    * and moving it horizontally depending on its facing direction.
+    */
     throw() {
         this.speedY = 30;
         this.applyGravity();
@@ -41,6 +45,10 @@ class ThrowableObject extends MoveableObject {
         }, 25);
     }
 
+    /**
+     * Detects when the bottle hits the ground without having collided yet,
+     * marks it as hit, and plays the impact sound.
+     */
     checkBottleGroundHit() {
         setInterval(() => {
             if (!this.bottleHit && this.y >= 350) {
@@ -50,14 +58,14 @@ class ThrowableObject extends MoveableObject {
         }, 1000 / 25);
     }
 
+    /**
+     * Animates the bottle by switching between rotation frames
+     * or hit frames depending on its collision state.
+     */
     animate() {
         setInterval(() => {
-            // let now = new Date().getTime();
             if (this.bottleHit) {
                 this.playAnimation(this.IMAGES_HIT);
-                // if (now - this.lastHit > 20) {
-                //     this.bottleHit = false;
-                // }
             } else {
                 this.playAnimation(this.IMAGES_ROTATING);
             }

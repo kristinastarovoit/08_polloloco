@@ -93,12 +93,19 @@ class Character extends MoveableObject {
         this.startAnimation()
     }
 
+    /**
+    * Starts a loop that updates the walking sound state at 30 FPS.
+    */
     startMovementSoundLoop() {
         setInterval(() => {
             this.updateWalkSound();
         }, 1000 / 30);
     }
 
+    /**
+    * Plays or stops the walking sound depending on movement input
+    * and prevents repeated triggering via an internal flag (isWalkingSoundPlaying).
+    */
     updateWalkSound() {
         const walking = this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
         if (walking && !this.isWalkingSoundPlaying) {
@@ -118,6 +125,10 @@ class Character extends MoveableObject {
         this.lastMoveTime = Date.now();
     }
 
+    /**
+    * Starts the main movement loop at 60 FPS, handling horizontal motion,
+    * jumping, and camera tracking.
+    */
     handleMovement() {
         this.lastMoveTime = Date.now();
         this.movementInterval = setInterval(() => {
@@ -127,7 +138,10 @@ class Character extends MoveableObject {
         }, 1000 / 60);
     }
 
-
+    /**
+    * Processes left/right movement including direction flipping
+    * and updates the last movement timestamp.
+    */
     handleHorizontalMovement() {
         if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
             this.otherDirection = false;
@@ -148,12 +162,20 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+    * Starts the animation loop that updates character animations
+    * based on movement and state.
+    */
     startAnimation() {
         setInterval(() => {
             this.handleAllAnimations();
         }, 200);
     }
 
+    /**
+    * Selects the correct animation depending on character state:
+    * dead, hurt, jumping, walking, idle, or long inactivity.
+    */
     handleAllAnimations() {
         const inactiveTime = Date.now() - this.lastMoveTime;
         if (this.isDead()) {
@@ -210,6 +232,11 @@ class Character extends MoveableObject {
         this.isSnoringSoundPlayed = false;
     }
 
+    /**
+     * Applies damage to the character unless they are currently hurt,
+     * updates energy, triggers the death sound once when dying,
+     * and records the timestamp of the last successful hit.
+     */
     hit(dmg) {
         if (!this.isHurt()) {
             this.energy -= dmg;

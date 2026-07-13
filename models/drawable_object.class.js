@@ -6,6 +6,9 @@ class DrawableObject {
     imageCache = {};
     currentImage = 0;
 
+    /**
+    * Loads a single image and assigns it to the object's main sprite.
+    */
     loadImg(path) { 
         this.img = new Image();
         this.img.src = path;
@@ -15,6 +18,10 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
+    /**
+     * Preloads multiple images and stores them in the object's cache
+     * for fast access during animations.
+     */
     loadImgs(arr) { 
         arr.forEach((path) => {
             let img = new Image();
@@ -43,6 +50,10 @@ class DrawableObject {
         }
     }
     
+    /**
+     * Cycles through a list of animation frames and updates the
+     * object's current image based on the animation index.
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

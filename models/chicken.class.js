@@ -27,6 +27,11 @@ class Chicken extends MoveableObject {
         this.animate();
     }
 
+    /**
+     * Runs the enemy’s movement and walking animation loops.
+     * Moves the enemy continuously and switches to the death frame
+     * once the enemy is dead, stopping the animation interval.
+     */
     animate() {
         setInterval(() => {
             this.moveLeft();

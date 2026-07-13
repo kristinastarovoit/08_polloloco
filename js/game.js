@@ -13,12 +13,24 @@ const btnRight = document.getElementById('btn_right');
 const btnJump = document.getElementById('btn_jump');
 const btnThrow = document.getElementById('btn_throw');
 
+
+
+/**
+ * Starts the selected game level by initializing the world with
+ * the corresponding level configuration.
+ *
+ * @param {number} levelNumber - The level to start (1 or 2).
+ */
 function startGame(levelNumber) {
     currentLevelNumber = levelNumber;
     if (levelNumber === 1) init(createLevel1());
     if (levelNumber === 2) init(createLevel2());
 }
 
+/**
+ * Restarts the currently active level by resetting screens,
+ * clearing intervals, and reloading the same level.
+ */
 function restartCurrentLevel() {
     gameOverScreen.classList.add('d_none');
     winScreen.classList.add('d_none');
@@ -26,6 +38,12 @@ function restartCurrentLevel() {
     startGame(currentLevelNumber);
 }
 
+/**
+ * Initializes the game world, hides the start screen,
+ * shows the canvas, loads mute state, and plays start sounds.
+ *
+ * @param {Object} level - The level configuration object.
+ */
 function init(level) {
     world = new World(canvas, keyboard, level);
     startscreen.classList.add('d_none');
@@ -39,6 +57,12 @@ function init(level) {
         SoundHub.playSound(SoundHub.BG_MUSIC);
     }
 }
+
+/**
+ * Handles all player input for desktop (keyboard) and mobile (touch).
+ * Touch events map directly to keyboard flags so movement logic stays unified.
+ */
+/* ---------------------- TOUCH CONTROLS ---------------------- */
 
 btnLeft.addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -84,7 +108,7 @@ btnThrow.addEventListener('touchend', (e) => {
     keyboard.D = false;
 });
 
-
+/* ---------------------- KEYBOARD CONTROLS ---------------------- */
 window.addEventListener('keydown', (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
@@ -131,6 +155,10 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
+/**
+ * Returns the player to the home/start screen and clears
+ * all running intervals from the world.
+ */
 function goHome() {
     world.clearAllIntervals();  // removes win and gameoverscreen check
     startscreen.classList.remove('d_none');
@@ -152,6 +180,10 @@ function showGameoverScreen() {
     gameOverScreen.classList.remove('d_none');
 }
 
+/**
+ * Displays the win screen and reveals the level 2 button
+ * only when finishing level 1.
+ */
 function showWinScreen() {
     winScreen.classList.remove('d_none');
     if (currentLevelNumber === 1) {

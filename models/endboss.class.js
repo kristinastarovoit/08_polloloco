@@ -66,6 +66,10 @@ class Endboss extends MoveableObject {
         this.triggered = true;
     }
 
+    /**
+     * Runs the endboss animation loop, switching between dead, hurt,
+     * or behavior‑driven states depending on current conditions.
+     */
     animate() {
         setInterval(() => {
             if (this.isDead()) {
@@ -78,6 +82,9 @@ class Endboss extends MoveableObject {
         }, 200);
     }
 
+    /**
+    * Delegates behavior handling based on the boss’s current state.
+    */
     handleAttackBehavior() {
         const now = Date.now();
         if (this.state === 'WALKING') {
@@ -91,6 +98,10 @@ class Endboss extends MoveableObject {
         }
     }
 
+    /**
+     * Plays the walking animation and transitions into alert mode
+     * once the boss has been triggered.
+    */
     checkWalkingBehavior(now) {
         this.playAnimation(this.IMAGES_WALKING);
         if (this.triggered) {
@@ -99,6 +110,10 @@ class Endboss extends MoveableObject {
         }
     }
 
+    /**
+     * Plays the alert animation and switches to attacking
+     * after a short delay.
+     */
     checkAlertBehavior(now) {
         this.playAnimation(this.IMAGES_ALERT);
         if (now - this.triggeredAt >= 800) {
@@ -107,6 +122,10 @@ class Endboss extends MoveableObject {
         }
     }
 
+    /**
+     * Plays the attack animation and moves the boss forward
+     * at fixed intervals during the attack phase.
+     */
     checkAttackBehavior(now) {
         this.playAnimation(this.IMAGES_ATTACK);
         if (now - this.lastAttackAt >= 1500) {

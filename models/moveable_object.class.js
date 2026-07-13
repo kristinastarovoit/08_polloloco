@@ -12,6 +12,11 @@ class MoveableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
+    /**
+     * Applies gravity to the object at 25 FPS. Moves the object downward
+     * while vertical speed is positive or it is above ground, and clamps
+     * the character to the ground level when falling too far.
+     */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -25,6 +30,10 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    /**
+     * Returns whether the object is considered above ground.
+     * Throwable objects always count as above ground.
+     */
     isAboveGround() {
         if (this instanceof ThrowableObject) {
             return true;
@@ -33,6 +42,10 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Checks full bounding‑box collision between this object
+     * and another moveable object, respecting offset values.
+     */
     isColliding(moveableObject) {
         return this.x + this.width - this.offset.right > moveableObject.x + moveableObject.offset.left &&
             this.y + this.height - this.offset.bottom > moveableObject.y + moveableObject.offset.top &&
@@ -40,6 +53,10 @@ class MoveableObject extends DrawableObject {
             this.y + this.offset.top < moveableObject.y + moveableObject.height - moveableObject.offset.bottom;
     }
 
+    /**
+     * Checks whether the collision happened from above while falling,
+     * ensuring the character’s bottom is above the enemy’s center.
+     */
     isCollidingTopToBottom(moveableObject) {
         if (!this.isColliding(moveableObject)) {
             return false;
@@ -53,6 +70,10 @@ class MoveableObject extends DrawableObject {
         return characterBottom < enemyCenter;
     }
 
+    /**
+     * Applies damage to the object, clamps energy to zero,
+     * and records the hit timestamp if still alive.
+     */
     hit(dmg) {
         this.energy -= dmg;
         if (this.energy < 0) {
@@ -60,13 +81,15 @@ class MoveableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-
     }
 
+    /**
+     * Returns true if the last hit occurred within the past second.
+     */
     isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit; 
-        timepassed = timepassed / 1000; 
-        return timepassed < 1; 
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
     }
 
     isDead() {
