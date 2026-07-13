@@ -31,7 +31,7 @@ function init(level) {
     startscreen.classList.add('d_none');
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
-    document.getElementById('win_screen').classList.add('d_none');
+    winScreen.classList.add('d_none');
     SoundHub.loadMuteState();
     if (!SoundHub.isMuted) {
         SoundHub.unmuteAll();
