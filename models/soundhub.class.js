@@ -43,7 +43,8 @@ class SoundHub {
     // Stoppt das Abspielen aller Audiodateien
     static stopAllSounds() {
         SoundHub.allSounds.forEach(sound => {
-            sound.pause();  // Pausiert jedes Audio in der Liste
+            // sound.pause();  // Pausiert jedes Audio in der Liste
+            sound.muted = true;
         });
         // document.getElementById('volume').value = 0.2;  // Setzt den Sound-Slider wieder auf 0.2
 

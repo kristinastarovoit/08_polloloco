@@ -25,6 +25,7 @@
     <script src="models/throwable_object.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
+    <script src="levels/level2.js"></script>
     <script src="js/game.js" defer></script>
 </head>
 
@@ -36,7 +37,8 @@
 
         <div class="additional_info_wrapper">
             <button><img class="ui_button" src="img/controls/imprint.svg" alt="imprint icon"></button>
-            <button id="mute_button" class="mute_button ui_button"><img src="img/controls/mute.svg" alt="mute icon"></button>
+            <button id="mute_button" class="mute_button ui_button"><img src="img/controls/mute.svg"
+                    alt="mute icon"></button>
         </div>
 
         <div class="mobile_controls_wrapper">
@@ -60,7 +62,7 @@
 
         <div id="startscreen" class="screen_overlay">
             <img class="screen start_screen" src="img/9_intro_outro_screens/start/startscreen_1.png">
-            <button onclick="init()" class="screen_button start_button">Start Game</button>
+            <button onclick="startGame(1)" class="screen_button start_button">Start Game</button>
             <button onclick="openDialog()" class="screen_button controls_button">Controls</button>
 
             <dialog id="controls_dialog">
@@ -90,13 +92,14 @@
         </div>
         <div id="gameover_screen" class="d_none screen_overlay">
             <img class="screen gameover_screen" src="img/9_intro_outro_screens/game_over/game over!.png">
-            <button onclick="restartGame()" class="screen_button restart_button">Restart</button>
+            <button onclick="restartCurrentLevel()" class="screen_button restart_button">Restart</button>
             <button onclick="goHome()" class="screen_button home_button">Go to Home</button>
         </div>
         <div id="win_screen" class="d_none screen_overlay">
             <img class="screen win_screen" src="img/You won, you lost/You Won B.png">
             <button onclick="restartGame()" class="screen_button restart_button">Restart</button>
             <button onclick="goHome()" class="screen_button home_button">Go to Home</button>
+            <button id="level_2_btn" onclick="startGame(2)" class="screen_button level_button">Level 2</button>
         </div>
 
     </div>

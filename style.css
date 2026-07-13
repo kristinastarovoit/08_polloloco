@@ -133,6 +133,23 @@ button {
     bottom: 80%;
 }
 
+/* /////// */
+
+.level_button {
+    background-color: #d44714;
+    bottom: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--font-color-yellow);
+}
+
+
+
+
+
+
+
+
 .controls_button,
 .home_button {
     bottom: 80%;

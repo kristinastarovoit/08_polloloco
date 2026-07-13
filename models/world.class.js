@@ -1,7 +1,7 @@
 class World {
     character = new Character();
     // level = createLevel1();
-    level = createLevel1();
+    // level = createLevel1();
     // enemies = level1.enemies;
     // clouds = level1.clouds;
     // backgroundObjects = level1.backgroundObjects;
@@ -15,10 +15,11 @@ class World {
     camera_x = 0;
     throwableObjects = [];
 
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, level) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.level = level;
         this.draw();
         this.setWorld();
         this.run();

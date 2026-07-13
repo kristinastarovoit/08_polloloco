@@ -1,15 +1,31 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let currentLevelNumber = 1;
 
-function init() {
+function startGame(levelNumber) {
+    currentLevelNumber = levelNumber;
+
+    if (levelNumber === 1) init(createLevel1());
+    if (levelNumber === 2) init(createLevel2());
+}
+
+function restartCurrentLevel() {
+    document.getElementById('gameover_screen').classList.add('d_none');
+    document.getElementById('win_screen').classList.add('d_none');
+    world.clearAllIntervals();
+    startGame(currentLevelNumber);
+}
+
+function init(level) {
     canvas = document.getElementById('canvas');
     const startscreen = document.getElementById('startscreen');
     const title = document.getElementById('title')
-    world = new World(canvas, keyboard); // übergibt canvas in constructor von World
+    world = new World(canvas, keyboard, level); // übergibt canvas in constructor von World
     startscreen.classList.add('d_none');
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
+    document.getElementById('win_screen').classList.add('d_none');
     SoundHub.playSound(SoundHub.GAME_START);
     // const gameoverScreen = document.getElementById('gameover_screen');
     // gameoverScreen.classList.add('d_none');
@@ -217,16 +233,23 @@ function showGameoverScreen() {
 function showWinScreen() {
     const winScreen = document.getElementById('win_screen');
     winScreen.classList.remove('d_none');
+    const level2Button = document.getElementById('level_2_btn');
+
+    if (currentLevelNumber === 1) {
+        level2Button.classList.remove('d_none');
+    } else if (currentLevelNumber === 2) {
+        level2Button.classList.add('d_none');
+    }
 }
 
 // intervalle alle stoppen, in ein array 
-function restartGame() {
+// function restartGame() {
 
-    document.getElementById('gameover_screen').classList.add('d_none');
-    document.getElementById('win_screen').classList.add('d_none');
-    world.clearAllIntervals();
-    world = new World(canvas, keyboard);
-}
+//     document.getElementById('gameover_screen').classList.add('d_none');
+//     document.getElementById('win_screen').classList.add('d_none');
+//     world.clearAllIntervals();
+//     world = new World(canvas, keyboard, createLevel1());
+// }
 
 
 document.getElementById('mute_button').addEventListener("click", () => {

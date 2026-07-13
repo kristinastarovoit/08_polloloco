@@ -1,0 +1,58 @@
+function createLevel2() {
+    return new Level(
+        [
+            new Chicken(),
+            new SmallChicken(),
+            new Chicken(),
+            new SmallChicken(),
+            new Endboss(),
+            new Chicken(),
+            new SmallChicken()
+        ],
+        [
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
+            new Cloud(),
+            new Cloud()
+        ],
+        [
+            new BackgroundObject('img/5_background/layers/air.png', -720),
+            new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -720),
+            new BackgroundObject('img/5_background/layers/2_second_layer/2.png', -720),
+            new BackgroundObject('img/5_background/layers/1_first_layer/2.png', -720),
+            new BackgroundObject('img/5_background/layers/air.png', 0),
+            new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0),
+            new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 0),
+            new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 0),
+            new BackgroundObject('img/5_background/layers/air.png', 720),
+            new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 720),
+            new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 720),
+            new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 720),
+            new BackgroundObject('img/5_background/layers/air.png', 2 * 720),
+            new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 2 * 720),
+            new BackgroundObject('img/5_background/layers/2_second_layer/1.png', 2 * 720),
+            new BackgroundObject('img/5_background/layers/1_first_layer/1.png', 2 * 720),
+            new BackgroundObject('img/5_background/layers/air.png', 3 * 720),
+            new BackgroundObject('img/5_background/layers/3_third_layer/2.png', 3 * 720),
+            new BackgroundObject('img/5_background/layers/2_second_layer/2.png', 3 * 720),
+            new BackgroundObject('img/5_background/layers/1_first_layer/2.png', 3 * 720),
+        ],
+        [
+            new StatusBar(30, 0, 'IMAGES_HEALTHBAR', 100),
+            new StatusBar(30, 50, 'IMAGES_BOTTLEBAR', 0),
+            new StatusBar(30, 100, 'IMAGES_COINBAR', 0),
+            // new StatusBar(500, 10, 'IMAGES_BOSSBAR', 100)
+        ],
+
+        new BossBar(),
+
+        [
+            new Bottle(),
+            new Bottle(),
+            new Coin()
+        ]
+    );
+};
+
+const level2 = createLevel2();
