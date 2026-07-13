@@ -50,7 +50,7 @@ class World {
     // erstellt bottle wenn D gedrückt wird und der Character mindestens 20 Flaschen hat
     throwBottle() {
         if (this.character.bottles >= 20) {
-            let bottle = new ThrowableObject(this.character.x, this.character.y);
+            let bottle = new ThrowableObject(this.character.x, this.character.y, this.character.otherDirection);
             this.throwableObjects.push(bottle);
             this.character.bottles -= 20;
             this.bottleBar.setPercentage(this.character.bottles);

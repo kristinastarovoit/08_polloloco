@@ -17,25 +17,37 @@ class ThrowableObject extends MoveableObject {
     bottleRotationIntervall;
     dmg = 20;
 
-    constructor(x, y) {
+    constructor(x, y, otherDirection = false) {
         super();
         this.x = x;
         this.y = y;
         this.height = 80;
         this.width = 80;
+        this.otherDirection = otherDirection;
         this.loadImg('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImgs(this.IMAGES_HIT);
         this.loadImgs(this.IMAGES_ROTATING);
         this.throw();
         this.animate();
+        this.checkBottleGroundHit();
     }
 
     throw() {
         this.speedY = 30;
         this.applyGravity();
+
         setInterval(() => {
-            this.x += 10;
-        }, 25)
+            this.x += this.otherDirection ? -10 : 10;
+        }, 25);
+    }
+
+    checkBottleGroundHit() {
+        setInterval(() => {
+            if (!this.bottleHit && this.y >= 350) {
+                this.bottleHit = true;
+                SoundHub.playSound(SoundHub.BOTTLE_HIT);
+            }
+        }, 1000 / 25);
     }
 
     animate() {
