@@ -29,16 +29,17 @@ class SoundHub {
         SoundHub.ENDBOSS_ATTACK,
         SoundHub.GAME_START
     ];
+    static isMuted = false;
 
-
-
-    // Spielt eine einzelne Audiodatei ab
-    static playSound(sound) {  // instrumentId nur wichtig für die Visualisierung
-        sound.volume = 0.2;  // Setzt die Lautstärke auf 0.2 = 20% / 1 = 100%
-        sound.currentTime = 0;  // Startet ab einer bestimmten stelle (0=Anfang/ 5 = 5 sec.)
-        sound.play();  // Spielt das übergebene Sound-Objekt ab
+    static playSound(sound) {
+        if (SoundHub.isMuted) {
+            return;
+        }
+        // sound.muted = false;
+        sound.volume = 0.2;
+        sound.currentTime = 0;
+        sound.play();
     }
-
 
     // Stoppt das Abspielen aller Audiodateien
     static stopAllSounds() {
@@ -48,6 +49,13 @@ class SoundHub {
         });
         // document.getElementById('volume').value = 0.2;  // Setzt den Sound-Slider wieder auf 0.2
 
+    }
+
+    static toggleMute() {
+        SoundHub.isMuted = !SoundHub.isMuted;
+        SoundHub.allSounds.forEach(sound => {
+            sound.muted = SoundHub.isMuted;
+        });
     }
 
     // static stopAllSounds() {
@@ -62,4 +70,4 @@ class SoundHub {
     //         //     sound.muted = false;
     //         // }
     //     }); }
-    }
+}

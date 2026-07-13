@@ -37,7 +37,7 @@
 
         <div class="additional_info_wrapper">
             <button><img class="ui_button" src="img/controls/imprint.svg" alt="imprint icon"></button>
-            <button id="mute_button" class="mute_button ui_button"><img src="img/controls/mute.svg"
+            <button onclick="SoundHub.toggleMute()" id="mute_button" class="mute_button ui_button"><img src="img/controls/mute.svg"
                     alt="mute icon"></button>
         </div>
 
@@ -97,7 +97,7 @@
         </div>
         <div id="win_screen" class="d_none screen_overlay">
             <img class="screen win_screen" src="img/You won, you lost/You Won B.png">
-            <button onclick="restartGame()" class="screen_button restart_button">Restart</button>
+            <button onclick="restartCurrentLevel()" class="screen_button restart_button">Restart</button>
             <button onclick="goHome()" class="screen_button home_button">Go to Home</button>
             <button id="level_2_btn" onclick="startGame(2)" class="screen_button level_button">Level 2</button>
         </div>

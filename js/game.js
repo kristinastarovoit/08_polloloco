@@ -29,53 +29,53 @@ function init(level) {
     SoundHub.playSound(SoundHub.GAME_START);
     // const gameoverScreen = document.getElementById('gameover_screen');
     // gameoverScreen.classList.add('d_none');
-    setupMobileControls();
+    // setupMobileControls();
 }
 
-function setupMobileControls() {
-    const setupButton = (id, key) => {
-        const btn = document.getElementById(id);
-        if (btn) {
-            btn.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                keyboard[key] = true;
-            });
-            btn.addEventListener('touchend', (e) => {
-                e.preventDefault();
-                keyboard[key] = false;
-            });
-            // btn.addEventListener('touchcancel', (e) => {
-            //     e.preventDefault();
-            //     keyboard[key] = false;
-            // });
-        }
-    };
+// function setupMobileControls() {
+//     const setupButton = (id, key) => {
+//         const btn = document.getElementById(id);
+//         if (btn) {
+//             btn.addEventListener('touchstart', (e) => {
+//                 e.preventDefault();
+//                 keyboard[key] = true;
+//             });
+//             btn.addEventListener('touchend', (e) => {
+//                 e.preventDefault();
+//                 keyboard[key] = false;
+//             });
+//             // btn.addEventListener('touchcancel', (e) => {
+//             //     e.preventDefault();
+//             //     keyboard[key] = false;
+//             // });
+//         }
+//     };
 
-    setupButton('btn_left', 'LEFT');
-    setupButton('btn_right', 'RIGHT');
-    setupButton('btn_jump', 'SPACE');
-    setupButton('btn_throw', 'D');
-}
+//     setupButton('btn_left', 'LEFT');
+//     setupButton('btn_right', 'RIGHT');
+//     setupButton('btn_jump', 'SPACE');
+//     setupButton('btn_throw', 'D');
+// }
 
-// document.getElementById('btn_left').addEventListener('touchstart', (e) => {
-//     e.preventDefault();
-//     keyboard.LEFT = true;
-// });
+document.getElementById('btn_left').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.LEFT = true;
+});
 
-// document.getElementById('btn_left').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.LEFT = false;
-// });
+document.getElementById('btn_left').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.LEFT = false;
+});
 
-// document.getElementById('btn_right').addEventListener('touchstart', (e) => {
-//     e.preventDefault();
-//     keyboard.RIGHT = true;
-// });
+document.getElementById('btn_right').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = true;
+});
 
-// document.getElementById('btn_right').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.RIGHT = false;
-// });
+document.getElementById('btn_right').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.RIGHT = false;
+});
 
 document.getElementById('btn_jump').addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -83,10 +83,10 @@ document.getElementById('btn_jump').addEventListener('touchstart', (e) => {
     SoundHub.playSound(SoundHub.CHARACTER_JUMP);
 });
 
-// document.getElementById('btn_jump').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.SPACE = false;
-// });
+document.getElementById('btn_jump').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.SPACE = false;
+});
 
 document.getElementById('btn_throw').addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -96,10 +96,10 @@ document.getElementById('btn_throw').addEventListener('touchstart', (e) => {
     }
 });
 
-// document.getElementById('btn_throw').addEventListener('touchend', (e) => {
-//     e.preventDefault();
-//     keyboard.D = false;
-// });
+document.getElementById('btn_throw').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keyboard.D = false;
+});
 
 
 window.addEventListener('keydown', (event) => {
@@ -252,7 +252,7 @@ function showWinScreen() {
 // }
 
 
-document.getElementById('mute_button').addEventListener("click", () => {
-    SoundHub.stopAllSounds();
-});
+// document.getElementById('mute_button').addEventListener("click", () => {
+//     SoundHub.stopAllSounds();
+// });
 

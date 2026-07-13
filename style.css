@@ -118,8 +118,12 @@ button {
 
 .additional_info_wrapper {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
     z-index: 10;
-    top: 2%;
+    top: 15%;
     right: 2%;
 }
 
@@ -129,8 +133,17 @@ button {
 
 .start_button,
 .restart_button {
-    right: 60%;
+    left: 25%;
     bottom: 80%;
+    transform: translate(-50%, -50%);
+}
+
+.controls_button,
+.home_button {
+    bottom: 80%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+
 }
 
 /* /////// */
@@ -139,21 +152,8 @@ button {
     background-color: #d44714;
     bottom: 70%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     color: var(--font-color-yellow);
-}
-
-
-
-
-
-
-
-
-.controls_button,
-.home_button {
-    bottom: 80%;
-    right: 25%;
 }
 
 .mobile_control_button {
@@ -296,10 +296,10 @@ dialog {
     }
 
     .content_wrapper {
-        width: 100vw;
+        width: 100dvw;
         height: auto;
         aspect-ratio: 720 / 480;
-        max-height: 100vh;
+        max-height: 100dvh;
         max-width: calc(100vh * (720 / 480));
     }
 
