@@ -92,7 +92,6 @@ class SoundHub {
         if (!SoundHub.isMuted) {
             SoundHub.playSound(SoundHub.BG_MUSIC);
         }
-        console.log(SoundHub.isMuted);
         document.getElementById('mute_button').blur();
     }
 
