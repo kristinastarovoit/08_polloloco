@@ -95,42 +95,57 @@ class World {
         });
     }
 
-
     checkCollectableCollision() {
         this.level.collectables.forEach((collectable, index) => {
             if (this.character.isColliding(collectable)) {
                 if (collectable instanceof Coin) {
-                    SoundHub.playSound(SoundHub.COIN_COLLECT);
-                    this.character.coins += 20;
-                    this.coinBar.setPercentage(this.character.coins);
+                    this.handleCoinCollect();
                 }
                 if (collectable instanceof Bottle) {
-                    SoundHub.playSound(SoundHub.BOTTLE_COLLECT);
-                    this.character.bottles += 20;
-                    this.bottleBar.setPercentage(this.character.bottles);
+                    this.handleBottleCollect();
                 }
                 this.level.collectables.splice(index, 1);
             }
         });
     }
 
+    handleCoinCollect() {
+        SoundHub.playSound(SoundHub.COIN_COLLECT);
+        this.character.coins += 20;
+        this.coinBar.setPercentage(this.character.coins);
+    }
+
+    handleBottleCollect() {
+        SoundHub.playSound(SoundHub.BOTTLE_COLLECT);
+        this.character.bottles += 20;
+        this.bottleBar.setPercentage(this.character.bottles);
+    }
+
     checkBottleEnemyCollision() {
         this.throwableObjects.forEach((bottle, bottleIndex) => {
             this.level.enemies.forEach((enemy, enemyIndex) => {
                 if (bottle.isColliding(enemy) && !bottle.bottleHit) {
-                    SoundHub.playSound(SoundHub.BOTTLE_HIT);
-                    bottle.bottleHit = true;
-                    enemy.hit(bottle.dmg);
-                    SoundHub.playSound(SoundHub.CHICKEN_DEAD);
+                    this.handleBottleEnemyHit(enemy, bottle);
                     if (enemy instanceof Endboss) {
                         this.bossBar.setPercentage(enemy.energy);
                     }
-                    setTimeout(() => {
-                        this.throwableObjects.splice(bottleIndex, 1);
-                    }, 100);
+                    this.removeBottleAfterThrow(bottleIndex);
                 }
             });
         });
+    }
+
+    removeBottleAfterThrow(bottleIndex) {
+        setTimeout(() => {
+            this.throwableObjects.splice(bottleIndex, 1);
+        }, 100);
+    }
+
+    handleBottleEnemyHit(enemy, bottle) {
+        SoundHub.playSound(SoundHub.BOTTLE_HIT);
+        bottle.bottleHit = true;
+        enemy.hit(bottle.dmg);
+        SoundHub.playSound(SoundHub.CHICKEN_DEAD);
     }
 
     checkEndbossPulled() {
@@ -152,20 +167,23 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.collectables);
-        this.addObjectsToMap(this.throwableObjects);
+        this.drawMoveableObjects();
         this.ctx.translate(-this.camera_x, 0);
         this.addObjectsToMap(this.level.statusBars);
         if (this.bossBarActivated) {
             this.addToMap(this.level.bossBar);
         }
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
-        })
+        });
+    }
+
+    drawMoveableObjects() {
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.collectables);
+        this.addObjectsToMap(this.throwableObjects);
     }
 
     addObjectsToMap(objects) {
