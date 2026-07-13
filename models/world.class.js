@@ -270,8 +270,6 @@ class World {
      * Draws a single object, flipping it horizontally if needed for character and bottle.
      */
     addToMap(moveableObject) {
-        //  moveableObject.drawFrame(this.ctx);
-
         if (moveableObject.otherDirection) {
             this.flipImage(moveableObject)
         } else {
