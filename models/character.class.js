@@ -99,7 +99,6 @@ class Character extends MoveableObject {
 
     updateWalkSound() {
         const walking = this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
-
         if (walking && !this.isWalkingSoundPlaying) {
             SoundHub.playSound(SoundHub.CHARACTER_WALK);
             this.isWalkingSoundPlaying = true;
@@ -182,10 +181,8 @@ class Character extends MoveableObject {
                 if (!this.isDeadSoundPlayed) { 
                     SoundHub.playSound(SoundHub.CHARACTER_DEAD);
                     this.isDeadSoundPlayed = true;
-                }
-                return;
+                } return;
             }
-
             this.lastHit = new Date().getTime();
         }
     }
@@ -193,7 +190,5 @@ class Character extends MoveableObject {
     pulledEndboss() {
         return this.x >= 2200;
     }
-
-
 }
 

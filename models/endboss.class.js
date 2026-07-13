@@ -91,7 +91,7 @@ class Endboss extends MoveableObject {
 
         else if (this.state === 'ALERT') {
             this.playAnimation(this.IMAGES_ALERT);
-            if (now - this.triggeredAt >= 1000) {
+            if (now - this.triggeredAt >= 800) {
                 this.state = 'ATTACKING';
                 this.lastAttackAt = now;
             }

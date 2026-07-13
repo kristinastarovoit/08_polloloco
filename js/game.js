@@ -1,28 +1,34 @@
-let canvas;
+const canvas = document.getElementById('canvas');
 let world;
 let keyboard = new Keyboard();
 let currentLevelNumber = 1;
+const winScreen = document.getElementById('win_screen');
+const gameOverScreen = document.getElementById('gameover_screen');
+const startscreen = document.getElementById('startscreen');
+const title = document.getElementById('title')
+const dialog = document.getElementById('controls_dialog');
+const level2Button = document.getElementById('level_2_btn');
+const btnLeft = document.getElementById('btn_left');
+const btnRight = document.getElementById('btn_right');
+const btnJump = document.getElementById('btn_jump');
+const btnThrow = document.getElementById('btn_throw');
 
 function startGame(levelNumber) {
     currentLevelNumber = levelNumber;
-
     if (levelNumber === 1) init(createLevel1());
     if (levelNumber === 2) init(createLevel2());
     SoundHub.playSound(SoundHub.BG_MUSIC);
 }
 
 function restartCurrentLevel() {
-    document.getElementById('gameover_screen').classList.add('d_none');
-    document.getElementById('win_screen').classList.add('d_none');
+    gameOverScreen.classList.add('d_none');
+    winScreen.classList.add('d_none');
     world.clearAllIntervals();
     startGame(currentLevelNumber);
 }
 
 function init(level) {
-    canvas = document.getElementById('canvas');
-    const startscreen = document.getElementById('startscreen');
-    const title = document.getElementById('title')
-    world = new World(canvas, keyboard, level); // übergibt canvas in constructor von World
+    world = new World(canvas, keyboard, level);
     startscreen.classList.add('d_none');
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
@@ -30,38 +36,38 @@ function init(level) {
     SoundHub.playSound(SoundHub.GAME_START);
 }
 
-document.getElementById('btn_left').addEventListener('touchstart', (e) => {
+btnLeft.addEventListener('touchstart', (e) => {
     e.preventDefault();
     keyboard.LEFT = true;
 });
 
-document.getElementById('btn_left').addEventListener('touchend', (e) => {
+btnLeft.addEventListener('touchend', (e) => {
     e.preventDefault();
     keyboard.LEFT = false;
 });
 
-document.getElementById('btn_right').addEventListener('touchstart', (e) => {
+btnRight.addEventListener('touchstart', (e) => {
     e.preventDefault();
     keyboard.RIGHT = true;
 });
 
-document.getElementById('btn_right').addEventListener('touchend', (e) => {
+btnRight.addEventListener('touchend', (e) => {
     e.preventDefault();
     keyboard.RIGHT = false;
 });
 
-document.getElementById('btn_jump').addEventListener('touchstart', (e) => {
+btnJump.addEventListener('touchstart', (e) => {
     e.preventDefault();
     keyboard.SPACE = true;
     SoundHub.playSound(SoundHub.CHARACTER_JUMP);
 });
 
-document.getElementById('btn_jump').addEventListener('touchend', (e) => {
+btnJump.addEventListener('touchend', (e) => {
     e.preventDefault();
     keyboard.SPACE = false;
 });
 
-document.getElementById('btn_throw').addEventListener('touchstart', (e) => {
+btnThrow.addEventListener('touchstart', (e) => {
     e.preventDefault();
     keyboard.D = true;
     if (world) {
@@ -69,7 +75,7 @@ document.getElementById('btn_throw').addEventListener('touchstart', (e) => {
     }
 });
 
-document.getElementById('btn_throw').addEventListener('touchend', (e) => {
+btnThrow.addEventListener('touchend', (e) => {
     e.preventDefault();
     keyboard.D = false;
 });
@@ -121,17 +127,15 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
-
 function goHome() {
     world.clearAllIntervals();  // removes win and gameoverscreen check
-    document.getElementById('startscreen').classList.remove('d_none');
-    document.getElementById('canvas').classList.add('d_none');
-    document.getElementById('gameover_screen').classList.add('d_none');
-    document.getElementById('win_screen').classList.add('d_none');
+    startscreen.classList.remove('d_none');
+    canvas.classList.add('d_none');
+    gameOverScreen.classList.add('d_none');
+    winScreen.classList.add('d_none');
 }
 
 function openDialog() {
-    const dialog = document.getElementById('controls_dialog');
     dialog.showModal();
 }
 
@@ -141,16 +145,11 @@ function closeDialog() {
 }
 
 function showGameoverScreen() {
-    const gameoverScreen = document.getElementById('gameover_screen');
-    gameoverScreen.classList.remove('d_none');
-    canvas = document.getElementById('canvas');
+    gameOverScreen.classList.remove('d_none');
 }
 
 function showWinScreen() {
-    const winScreen = document.getElementById('win_screen');
     winScreen.classList.remove('d_none');
-    const level2Button = document.getElementById('level_2_btn');
-
     if (currentLevelNumber === 1) {
         level2Button.classList.remove('d_none');
     } else if (currentLevelNumber === 2) {
