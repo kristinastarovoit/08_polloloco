@@ -1,0 +1,30 @@
+html {
+    min-height: 100%;
+    background-image: url('../img/5_background/background_game.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body.impressum {
+    display: block;
+    min-height: 100vh;
+}
+
+.back_to_game_button {
+    background-color: var(--font-color-yellow);
+    color: var(--font-color-orange);
+    font-size: 1.5rem;
+    border: 5px outset;
+    border-color: var(--font-color-orange);
+    margin: 12px 0;
+}
+
+.impressum_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 8%;
+    padding: 5%;
+}
