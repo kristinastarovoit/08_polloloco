@@ -80,29 +80,38 @@ class Endboss extends MoveableObject {
 
     handleAttackBehavior() {
         const now = Date.now();
-
         if (this.state === 'WALKING') {
-            this.playAnimation(this.IMAGES_WALKING);
-            if (this.triggered) {
-                this.state = 'ALERT';
-                this.triggeredAt = now;
-            }
+            this.checkWalkingBehavior(now);
         }
-
         else if (this.state === 'ALERT') {
-            this.playAnimation(this.IMAGES_ALERT);
-            if (now - this.triggeredAt >= 800) {
-                this.state = 'ATTACKING';
-                this.lastAttackAt = now;
-            }
+            this.checkAlertBehavior(now);
         }
-
         else if (this.state === 'ATTACKING') {
-            this.playAnimation(this.IMAGES_ATTACK);
-            if (now - this.lastAttackAt >= 1500) {
-                this.moveLeft();
-                this.lastAttackAt = now;
-            }
+            this.checkAttackBehavior(now);
+        }
+    }
+
+    checkWalkingBehavior(now) {
+        this.playAnimation(this.IMAGES_WALKING);
+        if (this.triggered) {
+            this.state = 'ALERT';
+            this.triggeredAt = now;
+        }
+    }
+
+    checkAlertBehavior(now) {
+        this.playAnimation(this.IMAGES_ALERT);
+        if (now - this.triggeredAt >= 800) {
+            this.state = 'ATTACKING';
+            this.lastAttackAt = now;
+        }
+    }
+
+    checkAttackBehavior(now) {
+        this.playAnimation(this.IMAGES_ATTACK);
+        if (now - this.lastAttackAt >= 1500) {
+            this.moveLeft();
+            this.lastAttackAt = now;
         }
     }
 

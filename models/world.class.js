@@ -18,7 +18,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.healthBar = this.level.statusBars[0]; // erkennt die einzelnen StatusBars
+        this.healthBar = this.level.statusBars[0];
         this.bottleBar = this.level.statusBars[1];
         this.coinBar = this.level.statusBars[2];
         this.bossBar = this.level.bossBar;
