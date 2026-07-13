@@ -5,11 +5,14 @@ html {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    margin: 0;
 }
 
 body.impressum {
     display: block;
     min-height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Spicy Rice';
 }
 
 .back_to_game_button {
@@ -19,6 +22,8 @@ body.impressum {
     border: 5px outset;
     border-color: var(--font-color-orange);
     margin: 12px 0;
+    cursor: pointer;
+    font-family: 'Spicy Rice';
 }
 
 .impressum_container {
@@ -27,4 +32,16 @@ body.impressum {
     justify-content: center;
     margin: 8%;
     padding: 5%;
+}
+
+h2,
+p {
+    margin: 0;
+}
+
+@media screen and (min-width: 1440px) {
+    body.impressum {
+        padding-left: max(20px, calc(50% - 720px));
+        padding-right: max(20px, calc(50% - 720px));
+    }
 }
