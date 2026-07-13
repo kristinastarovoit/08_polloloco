@@ -17,7 +17,6 @@ function startGame(levelNumber) {
     currentLevelNumber = levelNumber;
     if (levelNumber === 1) init(createLevel1());
     if (levelNumber === 2) init(createLevel2());
-    SoundHub.playSound(SoundHub.BG_MUSIC);
 }
 
 function restartCurrentLevel() {
@@ -33,7 +32,12 @@ function init(level) {
     canvas.classList.remove('d_none');
     title.classList.remove('d_none');
     document.getElementById('win_screen').classList.add('d_none');
-    SoundHub.playSound(SoundHub.GAME_START);
+    SoundHub.loadMuteState();
+    if (!SoundHub.isMuted) {
+        SoundHub.unmuteAll();
+        SoundHub.playSound(SoundHub.GAME_START);
+        SoundHub.playSound(SoundHub.BG_MUSIC);
+    }
 }
 
 btnLeft.addEventListener('touchstart', (e) => {
