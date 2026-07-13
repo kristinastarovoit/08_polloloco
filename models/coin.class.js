@@ -1,8 +1,6 @@
 class Coin extends DrawableObject {
     height = 130;
     width = 130;
-    // y = 150; // obbergrenze
-    // y= 300;
     offset = {
         top: 42,
         right: 42,
@@ -12,10 +10,6 @@ class Coin extends DrawableObject {
     IMAGES_COIN = [
         'img/8_coin/coin_1.png',
         'img/8_coin/coin_2.png',
-        // 'img/8_coin/coin_1.png',
-        // 'img/8_coin/coin_2.png', 
-        // 'img/8_coin/coin_1.png',
-        // 'img/8_coin/coin_2.png'
     ]
     constructor() {
         super();

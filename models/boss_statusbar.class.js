@@ -10,8 +10,5 @@ class BossBar extends StatusBar {
 
     constructor() {
         super(500, 10, 'IMAGES_BOSSBAR', 100);
-        // this.x = 500;
-        // this.y = 10;
-        // this.loadImgs(this.IMAGES_BOSSBAR);
     }
 }

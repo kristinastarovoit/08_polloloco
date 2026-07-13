@@ -13,7 +13,7 @@ class ThrowableObject extends MoveableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
-    bottleHit = false; // verhindert, dass eine bottle mehrmals schaden machen kann
+    bottleHit = false;
     bottleRotationIntervall;
     dmg = 20;
 
@@ -63,11 +63,4 @@ class ThrowableObject extends MoveableObject {
             }
         }, 100);
     }
-
-    // animateBottleHit() {
-    //     clearInterval(this.bottleRotationIntervall);
-    //     setInterval(() => {
-    //         this.playAnimation(this.IMAGES_HIT);
-    //     }, 100);
-    // }
 }

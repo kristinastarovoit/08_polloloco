@@ -52,7 +52,7 @@ class Endboss extends MoveableObject {
 
     constructor() {
         super();
-        this.loadImg(this.IMAGES_WALKING[0]); //wieso hier mit super und drunter mit this?
+        this.loadImg(this.IMAGES_WALKING[0]);
         this.loadImgs(this.IMAGES_WALKING);
         this.loadImgs(this.IMAGES_ALERT);
         this.loadImgs(this.IMAGES_ATTACK);
@@ -91,7 +91,6 @@ class Endboss extends MoveableObject {
 
         else if (this.state === 'ALERT') {
             this.playAnimation(this.IMAGES_ALERT);
-            // Nach 3 Sekunden in den Angriffsmodus wechseln
             if (now - this.triggeredAt >= 1000) {
                 this.state = 'ATTACKING';
                 this.lastAttackAt = now;
@@ -100,7 +99,6 @@ class Endboss extends MoveableObject {
 
         else if (this.state === 'ATTACKING') {
             this.playAnimation(this.IMAGES_ATTACK);
-            // Alle x Sekunden einen Schub nach vorne
             if (now - this.lastAttackAt >= 1500) {
                 this.moveLeft();
                 this.lastAttackAt = now;

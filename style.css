@@ -126,10 +126,6 @@ button {
     right: 2%;
 }
 
-/* .mute_button {
-    background-image: url('img/8_coin/coin_1.png');
-} */
-
 .start_button,
 .restart_button {
     left: 25%;
@@ -144,8 +140,6 @@ button {
     transform: translate(-50%, -50%);
 
 }
-
-/* /////// */
 
 .level_button {
     background-color: #d44714;
@@ -183,14 +177,11 @@ dialog {
     align-self: flex-end;
 }
 
-
-/* dialog controls!!!!! */
 .controls_wrapper>img {
     width: 80px;
     height: 33px;
 }
 
-/* dialog controls!!!!! */
 .controls_wrapper {
     display: flex;
     flex-direction: row;

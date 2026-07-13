@@ -59,9 +59,17 @@ function createLevel2() {
         new BossBar(),
 
         [
+            new Coin(),
             new Bottle(),
+            new Coin(),
+            new Bottle(),
+            new Coin(),
+            new Bottle(),
+            new Bottle(),
+            new Coin(),
             new Bottle(),
             new Coin()
+
         ]
     );
 };

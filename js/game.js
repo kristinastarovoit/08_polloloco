@@ -28,35 +28,7 @@ function init(level) {
     title.classList.remove('d_none');
     document.getElementById('win_screen').classList.add('d_none');
     SoundHub.playSound(SoundHub.GAME_START);
-    // const gameoverScreen = document.getElementById('gameover_screen');
-    // gameoverScreen.classList.add('d_none');
-    // setupMobileControls();
 }
-
-// function setupMobileControls() {
-//     const setupButton = (id, key) => {
-//         const btn = document.getElementById(id);
-//         if (btn) {
-//             btn.addEventListener('touchstart', (e) => {
-//                 e.preventDefault();
-//                 keyboard[key] = true;
-//             });
-//             btn.addEventListener('touchend', (e) => {
-//                 e.preventDefault();
-//                 keyboard[key] = false;
-//             });
-//             // btn.addEventListener('touchcancel', (e) => {
-//             //     e.preventDefault();
-//             //     keyboard[key] = false;
-//             // });
-//         }
-//     };
-
-//     setupButton('btn_left', 'LEFT');
-//     setupButton('btn_right', 'RIGHT');
-//     setupButton('btn_jump', 'SPACE');
-//     setupButton('btn_throw', 'D');
-// }
 
 document.getElementById('btn_left').addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -158,62 +130,6 @@ function goHome() {
     document.getElementById('win_screen').classList.add('d_none');
 }
 
-// const fullscreen = document.getElementById('fullscreen');
-
-// function fullscreen() {
-//     const fullscreen = document.getElementById('fullscreen');
-//     // const fullscreenButton = document.getElementById('fullscreen_button');
-//     // fullscreenButton.classList.toggle('d_none');
-//     openFullscreen(fullscreen);
-// }
-
-// function openFullscreen(element) {
-//     if (element.requestFullscreen) {
-//         element.requestFullscreen();
-//         resizeCanvasFullscreen();
-//     } else if (element.webkitRequestFullscreen) { /* Safari */
-//         element.webkitRequestFullscreen();
-//         resizeCanvasFullscreen();
-
-//     } else if (element.msRequestFullscreen) { /* IE11 */
-//         element.msRequestFullscreen();
-//         resizeCanvasFullscreen();
-//     }
-// }
-
-// function closeFullscreen() {
-//     // const fullscreenButton = document.getElementById('fullscreen_button');
-//     // fullscreenButton.classList.toggle('d_none');
-//     if (document.exitFullscreen) {
-//         document.exitFullscreen();
-//         resizeCanvasNormal();
-//     } else if (document.webkitExitFullscreen) { /* Safari */
-//         document.webkitExitFullscreen();
-//         resizeCanvasNormal();
-//     } else if (document.msExitFullscreen) { /* IE11 */
-//         document.msExitFullscreen();
-//         resizeCanvasNormal();
-
-//     }
-// }
-// function resizeCanvasFullscreen() {
-//     console.log('innerWidth:', window.innerWidth, 'innerHeight:', window.innerHeight);
-//     canvas.width = window.innerWidth;
-//     canvas.height = window.innerHeight;
-//     canvas.style.transform = 'translate(0, 0)';  // ← Entferne die Zentrierung
-//     canvas.style.left = '0';
-//     canvas.style.top = '0';
-//     console.log('Canvas width:', canvas.width, 'Canvas height:', canvas.height);
-
-//     // canvas.style.width = '100%';
-//     // canvas.style.height = '100%';
-// }
-
-// function resizeCanvasNormal() {
-//     canvas.width = 720;
-//     canvas.height = 480;
-// }
-
 function openDialog() {
     const dialog = document.getElementById('controls_dialog');
     dialog.showModal();
@@ -228,7 +144,6 @@ function showGameoverScreen() {
     const gameoverScreen = document.getElementById('gameover_screen');
     gameoverScreen.classList.remove('d_none');
     canvas = document.getElementById('canvas');
-    // canvas.classList.add('d_none');
 }
 
 function showWinScreen() {
@@ -242,18 +157,3 @@ function showWinScreen() {
         level2Button.classList.add('d_none');
     }
 }
-
-// intervalle alle stoppen, in ein array
-// function restartGame() {
-
-//     document.getElementById('gameover_screen').classList.add('d_none');
-//     document.getElementById('win_screen').classList.add('d_none');
-//     world.clearAllIntervals();
-//     world = new World(canvas, keyboard, createLevel1());
-// }
-
-
-// document.getElementById('mute_button').addEventListener("click", () => {
-//     SoundHub.stopAllSounds();
-// });
-

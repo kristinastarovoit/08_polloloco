@@ -141,32 +141,31 @@ class Character extends MoveableObject {
                 clearInterval(movement);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURTING);
-                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                SoundHub.CHARACTER_SNORE.pause();
                 this.isSnoringSoundPlayed = false;
             }
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
-                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                SoundHub.CHARACTER_SNORE.pause(); 
                 this.isSnoringSoundPlayed = false;
 
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                // Walk animation
                 this.playAnimation(this.IMAGES_WALKING);
-                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                SoundHub.CHARACTER_SNORE.pause();
                 this.isSnoringSoundPlayed = false;
             }
             else if (inactiveTime > 10000) {
-                // 5 Sekunden nichts gemacht → Spezial-Idle
+
                 this.playAnimation(this.IMAGES_INACTIVE);
                 if (!this.isSnoringSoundPlayed) {
-                    SoundHub.CHARACTER_SNORE.loop = true;  // ← Loop aktivieren
+                    SoundHub.CHARACTER_SNORE.loop = true;
                     SoundHub.playSound(SoundHub.CHARACTER_SNORE);
                     this.isSnoringSoundPlayed = true;
                 }
             }
             else {
                 this.playAnimation(this.IMAGES_IDLE);
-                SoundHub.CHARACTER_SNORE.pause();  // ← Sound stoppen
+                SoundHub.CHARACTER_SNORE.pause();
                 this.isSnoringSoundPlayed = false;
             }
         }, 200);
@@ -180,7 +179,7 @@ class Character extends MoveableObject {
                 this.energy = 0;
             }
             if (this.isDead()) {
-                if (!this.isDeadSoundPlayed) {  // ← Nur einmal abspielen
+                if (!this.isDeadSoundPlayed) { 
                     SoundHub.playSound(SoundHub.CHARACTER_DEAD);
                     this.isDeadSoundPlayed = true;
                 }
