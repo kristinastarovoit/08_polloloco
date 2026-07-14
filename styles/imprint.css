@@ -13,6 +13,7 @@ body.impressum {
     min-height: 100vh;
     box-sizing: border-box;
     font-family: 'Spicy Rice';
+    margin: 0;
 }
 
 .back_to_game_button {
@@ -30,7 +31,6 @@ body.impressum {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 8%;
     padding: 5%;
 }
 
