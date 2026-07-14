@@ -13,9 +13,6 @@ const btnRight = document.getElementById('btn_right');
 const btnJump = document.getElementById('btn_jump');
 const btnThrow = document.getElementById('btn_throw');
 
-SoundHub.loadMuteState();
-SoundHub.updateMuteButton();
-
 /**
  * Starts the selected game level by initializing the world with
  * the corresponding level configuration.
@@ -52,7 +49,7 @@ function init(level) {
     title.classList.remove('d_none');
     winScreen.classList.add('d_none');
     SoundHub.loadMuteState();
-    updateMuteButton();
+    SoundHub.updateMuteButton();
     if (!SoundHub.isMuted) {
         SoundHub.unmuteAll();
         SoundHub.playSound(SoundHub.GAME_START);
