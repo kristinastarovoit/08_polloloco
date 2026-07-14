@@ -38,26 +38,26 @@
         </canvas>
 
         <div class="additional_info_wrapper">
-            <a href="imprint.html"><button><img class="ui_button" src="img/controls/imprint.svg" alt="imprint icon"></button></a>
-            <button onclick="SoundHub.toggleMute()" id="mute_button" class="mute_button ui_button"><img src="img/controls/mute.svg"
-                    alt="mute icon"></button>
+            <a href="imprint.html"><button><img class="ui_button" src="img/controls/imprint.svg"
+                        alt="imprint icon"></button></a>
+            <button onclick="SoundHub.toggleMute()" id="unmute_button" class="mute_button ui_button d_none"><img
+                    src="img/controls/mute.svg" alt="mute icon"></button>
+            <button onclick="SoundHub.toggleMute()" id="mute_button" class="mute_button ui_button"><img
+                    src="img/controls/unmute.svg" alt="mute icon"></button>
+
         </div>
 
         <div class="mobile_controls_wrapper">
             <div class="move_mobile_controls">
                 <button id="btn_left" class="mobile_control_button">
-                    <!-- <img src="img/controls/mobile_left.svg"> -->
                 </button>
                 <button id="btn_right" class="mobile_control_button">
-                    <!-- <img src="img/controls/mobile_right.svg"> -->
                 </button>
             </div>
             <div class="action_mobile_controls">
                 <button id="btn_jump" class="mobile_control_button">
-                    <!-- <img src="img/controls/mobile_jump.svg"> -->
                 </button>
                 <button id="btn_throw" class="mobile_control_button">
-                    <!-- <img src="img/controls/mobile_throw.svg"> -->
                 </button>
             </div>
         </div>
@@ -85,10 +85,6 @@
                         <img class="mobile_dialog_throw" src="img/controls/mobile_throw.svg">
                         <p>throw bottle</p>
                     </div>
-                    <!-- <div class="controls_wrapper">
-                        <img src="img/controls/esc.svg">
-                        <p>exit fullscreen</p>
-                    </div> -->
                 </div>
             </dialog>
         </div>
@@ -103,13 +99,7 @@
             <button onclick="goHome()" class="screen_button home_button">Go to Home</button>
             <button id="level_2_btn" onclick="startGame(2)" class="screen_button level_button">Level 2</button>
         </div>
-
     </div>
-
-    <!-- <div class="fullscreen_buttons_wrapper">
-        <button onclick="fullscreen()" class="ui_button"><img src="img/controls/fullscreen.svg"></button> -->
-    <!-- <button onclick="closeFullscreen()" class="ui_button"><img
-                src="img/controls/exitfullscreen.svg"></button> -->
     </div>
     <div class="turn_device_wrapper">
         <p>Please turn your device to play</p>
