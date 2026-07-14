@@ -127,6 +127,7 @@ window.addEventListener('keydown', (event) => {
         SoundHub.playSound(SoundHub.CHARACTER_JUMP);
     }
     if (event.keyCode == 68) {
+        if (event.repeat) return;
         keyboard.D = true;
         if (world) {
             world.throwBottle();
