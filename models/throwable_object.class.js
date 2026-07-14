@@ -51,7 +51,7 @@ class ThrowableObject extends MoveableObject {
      */
     checkBottleGroundHit() {
         setInterval(() => {
-            if (!this.bottleHit && this.y >= 350) {
+            if (!this.bottleHit && this.y >= 330) {
                 this.bottleHit = true;
                 SoundHub.playSound(SoundHub.BOTTLE_HIT);
             }
