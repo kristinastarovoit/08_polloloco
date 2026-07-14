@@ -91,13 +91,9 @@ class SoundHub {
         });
         if (!SoundHub.isMuted) {
             SoundHub.playSound(SoundHub.BG_MUSIC);
-            document.getElementById('unmute_button').classList.add('d_none');
-            document.getElementById('mute_button').classList.remove('d_none');
-        } else {
-            document.getElementById('unmute_button').classList.remove('d_none');
-            document.getElementById('mute_button').classList.add('d_none');
         }
         document.getElementById('mute_button').blur();
+        SoundHub.updateMuteButton();
     }
 
     /**
@@ -109,5 +105,16 @@ class SoundHub {
         SoundHub.allSounds.forEach(sound => {
             sound.muted = false;
         });
+    }
+
+        static updateMuteButton() {
+        if (SoundHub.isMuted) {
+            document.getElementById('unmute_button').classList.remove('d_none');
+            document.getElementById('mute_button').classList.add('d_none');
+        }
+        else {
+            document.getElementById('unmute_button').classList.add('d_none');
+            document.getElementById('mute_button').classList.remove('d_none');
+        }
     }
 }
