@@ -121,6 +121,11 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Updates the timestamp of the last movement action so idle
+     * and inactivity logic can correctly detect how long the
+     * character has not moved.
+     */
     updateLastMoveTime() {
         this.lastMoveTime = Date.now();
     }
