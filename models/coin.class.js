@@ -20,6 +20,10 @@ class Coin extends DrawableObject {
         this.playCoinAnimation();
     }
 
+    /**
+     * Plays the coin animation in a loop by cycling through the
+     * coin image frames at a fixed interval.
+     */
     playCoinAnimation() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COIN);

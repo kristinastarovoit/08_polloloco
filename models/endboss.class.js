@@ -62,6 +62,10 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
+    /**
+     * Activates the alert state so the character switches
+     * into its alert behavior logic.
+     */
     activateAlert() {
         this.triggered = true;
     }

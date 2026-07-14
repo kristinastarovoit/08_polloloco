@@ -265,7 +265,6 @@ class World {
         )
     }
 
-
     /**
      * Draws a single object, flipping it horizontally if needed for character and bottle.
      */
