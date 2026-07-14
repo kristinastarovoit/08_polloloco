@@ -167,15 +167,24 @@ function goHome() {
     winScreen.classList.add('d_none');
 }
 
+/**
+ * Opens the controls dialog modal.
+ */
 function openDialog() {
     dialog.showModal();
 }
 
+/**
+ * Closes the controls dialog modal.
+ */
 function closeDialog() {
     const dialog = document.getElementById('controls_dialog');
     dialog.close();
 }
 
+/**
+ * Displays the game‑over screen.
+ */
 function showGameoverScreen() {
     gameOverScreen.classList.remove('d_none');
 }

@@ -155,6 +155,10 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Handles jump input: triggers a jump only when SPACE is pressed
+     * and the character is currently on the ground.
+     */
     handleJumpMovement() {
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
@@ -193,26 +197,42 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Plays the death animation and stops all movement updates.
+     */
     playDeadAnimation() {
         this.playAnimation(this.IMAGES_DYING);
         clearInterval(this.movementInterval);
     }
 
+    /**
+     * Plays the hurt animation and stops any snoring sound.
+     */
     playHurtAnimation() {
         this.playAnimation(this.IMAGES_HURTING);
         this.stopSnoring();
     }
 
+    /**
+     * Plays the jump animation and stops any snoring sound.
+     */
     playJumpAnimation() {
         this.playAnimation(this.IMAGES_JUMPING);
         this.stopSnoring();
     }
 
+    /**
+     * Plays the walking animation and stops any snoring sound.
+     */
     playWalkAnimation() {
         this.playAnimation(this.IMAGES_WALKING);
         this.stopSnoring();
     }
 
+    /**
+     * Plays the inactive animation and triggers the snoring sound
+     * if it is not already playing.
+     */
     playInactiveAnimation() {
         this.playAnimation(this.IMAGES_INACTIVE);
         if (!this.isSnoringSoundPlayed) {
@@ -222,11 +242,17 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Plays the idle animation and stops any snoring sound.
+     */
     playIdleAnimation() {
         this.playAnimation(this.IMAGES_IDLE);
         this.stopSnoring();
     }
 
+    /**
+     * Stops the snoring sound and resets the snoring flag.
+    */
     stopSnoring() {
         SoundHub.CHARACTER_SNORE.pause();
         this.isSnoringSoundPlayed = false;
@@ -253,6 +279,12 @@ class Character extends MoveableObject {
         }
     }
 
+    /**
+     * Returns whether the character has moved far enough to trigger
+     * the endboss encounter.
+     *
+     * @returns {boolean} True when the character reaches the trigger zone.
+     */
     pulledEndboss() {
         return this.x >= 2200;
     }

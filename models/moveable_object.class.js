@@ -92,18 +92,32 @@ class MoveableObject extends DrawableObject {
         return timepassed < 1;
     }
 
+    /**
+     * Returns whether the object has no remaining energy.
+     *
+     * @returns {boolean} True if energy is zero.
+     */
     isDead() {
         return this.energy == 0;
     }
 
+    /**
+     * Moves the object to the right based on its current speed.
+     */
     moveRight() {
         this.x += this.speed;
     }
 
+    /**
+     * Moves the object to the left based on its current speed.
+     */
     moveLeft() {
         this.x -= this.speed;
     }
 
+    /**
+     * Initiates a jump by giving the object upward velocity.
+     */
     jump() {
         this.speedY = 30;
 

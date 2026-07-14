@@ -324,6 +324,14 @@ class World {
         })
     }
 
+    /**
+    * Clears all active intervals in the current browser tab by iterating
+     * through a large range of possible interval IDs and stopping each one.
+    * 
+    * Note: This is a brute‑force cleanup method used to ensure that no
+    * leftover game loops continue running after restarting or leaving
+    * the game.
+    */
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     }
