@@ -31,7 +31,7 @@ body.impressum {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 5%;
+    padding: 3%;
 }
 
 h2,

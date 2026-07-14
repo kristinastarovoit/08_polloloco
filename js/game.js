@@ -201,14 +201,3 @@ function showWinScreen() {
         level2Button.classList.add('d_none');
     }
 }
-
-// function updateMuteButton() {
-//     if (SoundHub.isMuted) {
-//         document.getElementById('unmute_button').classList.remove('d_none');
-//         document.getElementById('mute_button').classList.add('d_none');
-//     }
-//     else {
-//         document.getElementById('unmute_button').classList.add('d_none');
-//         document.getElementById('mute_button').classList.remove('d_none');
-//     }
-// }
