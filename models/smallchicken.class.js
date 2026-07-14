@@ -17,7 +17,7 @@ class SmallChicken extends Chicken {
         left: 0
     };
     energy = 10;
-    dmg = 5;
+    dmg = 10;
 
     constructor() {
         super();

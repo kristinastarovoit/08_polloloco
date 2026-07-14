@@ -16,7 +16,7 @@ class Chicken extends MoveableObject {
         left: 4
     };
     energy = 20;
-    dmg = 10;
+    dmg = 20;
 
     constructor() {
         super();
