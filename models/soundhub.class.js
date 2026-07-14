@@ -107,6 +107,10 @@ class SoundHub {
         });
     }
 
+    /**
+     * Updates the mute/unmute button visibility based on the current
+     * mute state. Shows the correct button so the user can toggle audio.
+     */
         static updateMuteButton() {
         if (SoundHub.isMuted) {
             document.getElementById('unmute_button').classList.remove('d_none');

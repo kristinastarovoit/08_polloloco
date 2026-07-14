@@ -38,7 +38,9 @@ function restartCurrentLevel() {
 
 /**
  * Initializes the game world, hides the start screen,
- * shows the canvas, loads mute state, and plays start sounds.
+ * shows the canvas, loads the saved mute state, updates
+ * the mute/unmute button, and plays start sounds if audio
+ * is currently enabled.
  *
  * @param {Object} level - The level configuration object.
  */
